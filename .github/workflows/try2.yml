@@ -27,7 +27,7 @@ jobs:
           {
               Connect-AzAccount
           }
-          $resourceGroup = "cloud-shell-storage-westeurope"
+          $resourceGroup = "NetworkWatcherRG"
           $automationAccount = "tryingCT"
           $storageAccount = "myfirsttrail"
           $key = Get-AzStorageAccountKey -ResourceGroupName $resourceGroup -Name $storageAccount
