@@ -11,10 +11,10 @@ jobs:
     strategy:
       matrix:
         files:
-          - date_check.py
-          - get_ad_users.py
-          - process_management.py
-          - update_user_attribute.py
+          - date_check
+          - get_ad_users
+          - process_management
+          - update_user_attribute
     steps:
       - uses: actions/checkout@v3
       - uses: azure/login@v1
@@ -27,8 +27,8 @@ jobs:
 
           inlineScript: |
             pushd ./scripts/runbooks
-            Import-AzAutomationRunbook -Path ${{ matrix.files }}  -Name try -Type Python3 -AutomationAccountName 'tryingCT' -ResourceGroupName 'cloud-shell-storage-westeurope' -Force
-            Publish-AzAutomationRunbook -Name try -AutomationAccountName 'tryingCT'  -ResourceGroupName 'cloud-shell-storage-westeurope'
+            Import-AzAutomationRunbook -Path ${{ matrix.files }}.py  -Name ${{ matrix.files }} -Type Python3 -AutomationAccountName 'tryingCT' -ResourceGroupName 'cloud-shell-storage-westeurope' -Force
+            Publish-AzAutomationRunbook -Name ${{ matrix.files }} -AutomationAccountName 'tryingCT'  -ResourceGroupName 'cloud-shell-storage-westeurope'
             popd
           azPSVersion: "latest"
 
