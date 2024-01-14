@@ -28,7 +28,7 @@ jobs:
         with:
 
           inlineScript: |
-            Import-AzAutomationDscConfiguration -Published -AutomationAccountName 'TryingCT' -ResourceGroupName tets -SourcePath ./scripts/runbooks/myrunbook.py -Force
+            Import-AzAutomationDscConfiguration -Published -AutomationAccountName 'TryingCT' -ResourceGroupName 'cloud-shell-storage-westeurope' -SourcePath ./scripts/runbooks/myrunbook.py -Force
             -AutomationAccountName tryingCT
           # inlineScript: |
           #   pushd ./scripts/runbooks
