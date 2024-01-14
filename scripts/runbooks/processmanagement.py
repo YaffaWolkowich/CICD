@@ -1,6 +1,6 @@
-from project.date_check import is_past_expiration_by
-from project.update_user_attribute import update_user_attribute
-from project.get_ad_users import retrieving_list_of_users_by_department_name
+from date_check import is_past_expiration_by
+from update_user_attribute import update_user_attribute
+from get_ad_users import retrieving_list_of_users_by_department_name
 from azure.keyvault.secrets import SecretClient
 from azure.identity import DefaultAzureCredential
 import requests
@@ -11,9 +11,9 @@ def inspection_process_management(kv_uri,department,days):
     access_token=get_access_token(tenant_id, client_id, client_secret)
     if access_token:
         try:
-            sending_users_for_testing(access_token,department,days,application_id) 
+            sending_users_for_testing(access_token,department,days,application_id)
         except Exception as e:
-            return "sending_users_for_testing does not succeed"         
+            return "sending_users_for_testing does not succeed"
     else:
         return "Failed to obtain access token"
     
@@ -51,4 +51,4 @@ def user_expiration_date_check(access_token,user,days,application_id):
     if(attribute_name in user):
         is_past_expiration_by(days,user[attribute_name], access_token,user['id'],attribute_name)
     else:
-        update_user_attribute(access_token, user['id'],attribute_name, datetime.date.today()) 
+        update_user_attribute(access_token, user['id'],attribute_name, datetime.date.today())
