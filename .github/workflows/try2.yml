@@ -1,10 +1,10 @@
-Get-AzAutomationAccount -ResourceGroupName "ResourceGroup03"
-
 
 name: AzurePowerShellSample
 on:
   workflow_dispatch:
-
+permissions:
+  contents: read
+  id-token: write
 jobs:
 
   build:
@@ -21,5 +21,5 @@ jobs:
       uses: azure/powershell@v1
       with:
         inlineScript: |
-          Get-AzVM -ResourceGroupName "tets"
+          Get-AzAutomationAccount -ResourceGroupName "tets"
         azPSVersion: "latest"
