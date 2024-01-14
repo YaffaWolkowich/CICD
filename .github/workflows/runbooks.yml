@@ -24,12 +24,6 @@ jobs:
         with:
 
           inlineScript: |
-            # Sign in to your Azure subscription
-            $sub = Get-AzSubscription -ErrorAction SilentlyContinue
-            if(-not($sub))
-            {
-                Connect-AzAccount
-            }
             pushd ./scripts/runbooks
             Import-AzAutomationRunbook -Path "myrunbook.py"  -Name myrunbook -Type Python3 -AutomationAccountName 'tryingCT' -ResourceGroupName 'cloud-shell-storage-westeurope' -Force
             Publish-AzAutomationRunbook -Name myrunbook -AutomationAccountName 'tryingCT'  -ResourceGroupName 'cloud-shell-storage-westeurope'

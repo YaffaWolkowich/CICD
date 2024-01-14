@@ -22,4 +22,22 @@ jobs:
       with:
         inlineScript: |
           Get-AzAutomationAccount -ResourceGroupName "cloud-shell-storage-westeurope"
+          $sub = Get-AzSubscription -ErrorAction SilentlyContinue
+          if(-not($sub))
+          {
+              Connect-AzAccount
+          }
+          $key = Get-AzStorageAccountKey -ResourceGroupName $resourceGroup -Name $storageAccount
+
+          $context = New-AzStorageContext -StorageAccountName $storageAccount -StorageAccountKey $key[0].value
+
+          $fileShare = New-AzStorageShare -Name 'resource-templates' -Context $context
+
+          Set-AzStorageFileContent -ShareName $fileShare.Name -Context $context -Source $storageTemplate
         azPSVersion: "latest"
+          # $resourceGroup = "cloud-shell-storage-westeurope"
+          # $automationAccount = "tryingCT"
+          # $storageAccount = "myfirsttrail"
+          # $userAssignedManagedIdentity = "userAssignedManagedIdentity"
+          # $storageTemplate = "path\storageTemplate.json"
+          # $runbookScript = "path\runbookScript.ps1"
