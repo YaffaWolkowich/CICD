@@ -30,6 +30,7 @@ jobs:
           $resourceGroup = "NetworkWatcherRG"
           $automationAccount = "tryingCT"
           $storageAccount = "myfirsttrail"
+          $storageTemplate = "storageTemplate.json"
           $key = Get-AzStorageAccountKey -ResourceGroupName $resourceGroup -Name $storageAccount
 
           $context = New-AzStorageContext -StorageAccountName $storageAccount -StorageAccountKey $key[0].value
@@ -39,5 +40,4 @@ jobs:
           Set-AzStorageFileContent -ShareName $fileShare.Name -Context $context -Source $storageTemplate
         azPSVersion: "latest"
           # $userAssignedManagedIdentity = "userAssignedManagedIdentity"
-          # $storageTemplate = "path\storageTemplate.json"
           # $runbookScript = "path\runbookScript.ps1"
