@@ -21,16 +21,18 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           enable-AzPSSession: true
-      - name: Deploy Azure runbooks
-        uses: azure/powershell@v1
-        with:
+      - name: Get result
+        run: echo "${{steps.script.outputs.result}}"
+      # - name: Deploy Azure runbooks
+      #   uses: azure/powershell@v1
+      #   with:
 
-          inlineScript: |
-            pushd ./scripts/runbooks
-            Import-AzAutomationRunbook -Path ${{ matrix.files }}.py  -Name ${ matrix.files } -Type Python3 -AutomationAccountName 'tryingCT' -ResourceGroupName 'cloud-shell-storage-westeurope' -Force
-            Publish-AzAutomationRunbook -Name ${{ matrix.files }} -AutomationAccountName 'tryingCT'  -ResourceGroupName 'cloud-shell-storage-westeurope'
-            popd
-          azPSVersion: "latest"
+      #     inlineScript: |
+      #       pushd ./scripts/runbooks
+      #       Import-AzAutomationRunbook -Path ${{ matrix.files }}.py  -Name ${ matrix.files } -Type Python3 -AutomationAccountName 'tryingCT' -ResourceGroupName 'cloud-shell-storage-westeurope' -Force
+      #       Publish-AzAutomationRunbook -Name ${{ matrix.files }} -AutomationAccountName 'tryingCT'  -ResourceGroupName 'cloud-shell-storage-westeurope'
+      #       popd
+      #     azPSVersion: "latest"
 
       - name: logout
         run: |
