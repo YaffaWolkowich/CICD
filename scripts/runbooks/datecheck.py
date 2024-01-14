@@ -1,5 +1,5 @@
 import datetime
-from update_user_attribute import update_user_attribute
+from updateuserattribute import update_user_attribute
 
 def is_past_expiration_by(days: int, date, access_token, user_id,attribute_name):
     desired_date = adding_days_to_date(days,date)

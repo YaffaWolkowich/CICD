@@ -1,6 +1,6 @@
-from date_check import is_past_expiration_by
-from update_user_attribute import update_user_attribute
-from get_ad_users import retrieving_list_of_users_by_department_name
+from datecheck import is_past_expiration_by
+from updateuserattribute import update_user_attribute
+from getadusers import retrieving_list_of_users_by_department_name
 from azure.keyvault.secrets import SecretClient
 from azure.identity import DefaultAzureCredential
 import requests
