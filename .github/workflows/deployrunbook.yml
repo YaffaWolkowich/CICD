@@ -28,8 +28,8 @@ jobs:
         with:
           inlineScript: |
             pushd ./scripts/runbooks
-            Import-AzAutomationRunbook -Path ${{ matrix.files }}.py  -Name process_management -Type Python3 -AutomationAccountName 'tryingCT' -ResourceGroupName 'cloud-shell-storage-westeurope' -Force
-            Publish-AzAutomationRunbook -Name process_management -AutomationAccountName 'tryingCT'  -ResourceGroupName 'cloud-shell-storage-westeurope'
+            Import-AzAutomationRunbook -Path ${{ matrix.files }}.py  -Name processmanagement -Type Python3 -AutomationAccountName 'tryingCT' -ResourceGroupName 'cloud-shell-storage-westeurope' -Force
+            Publish-AzAutomationRunbook -Name processmanagement -AutomationAccountName 'tryingCT'  -ResourceGroupName 'cloud-shell-storage-westeurope'
             popd
           azPSVersion: "latest"
 
