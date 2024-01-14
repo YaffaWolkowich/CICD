@@ -28,7 +28,7 @@ jobs:
           inlineScript: |
             pushd ./scripts/runbooks
             Import-AzAutomationRunbook -Path ${{ matrix.files }}  -Name myrunbook -Type Python3 -AutomationAccountName 'tryingCT' -ResourceGroupName 'cloud-shell-storage-westeurope' -Force
-            Publish-AzAutomationRunbook -Name ${{ matrix.files }} -AutomationAccountName 'tryingCT'  -ResourceGroupName 'cloud-shell-storage-westeurope'
+            Publish-AzAutomationRunbook -Name stam -AutomationAccountName 'tryingCT'  -ResourceGroupName 'cloud-shell-storage-westeurope'
             popd
           azPSVersion: "latest"
 
