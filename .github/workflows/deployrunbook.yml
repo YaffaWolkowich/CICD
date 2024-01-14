@@ -12,9 +12,9 @@ jobs:
       matrix:
         files:
           - date_check.py
-          # - get_ad_users.py
-          # - process_management.py
-          # - update_user_attribute.py
+          - get_ad_users.py
+          - process_management.py
+          - update_user_attribute.py
     steps:
       - uses: actions/checkout@v3
       - uses: azure/login@v1
