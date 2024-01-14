@@ -1,0 +1,37 @@
+name: Deploy Kontext automation runbooks
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        files:
+          - date_check.py
+          - get_ad_users.py
+          - process_management.py
+          - update_user_attribute.py
+    steps:
+      - uses: actions/checkout@v3
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
+      - name: Deploy Azure runbooks
+        uses: azure/powershell@v1
+        with:
+
+          inlineScript: |
+            pushd ./scripts/runbooks
+            Import-AzAutomationRunbook -Path ${{ matrix.files }}  -Name myrunbook -Type Python3 -AutomationAccountName 'tryingCT' -ResourceGroupName 'cloud-shell-storage-westeurope' -Force
+            Publish-AzAutomationRunbook -Name ${{ matrix.files }} -AutomationAccountName 'tryingCT'  -ResourceGroupName 'cloud-shell-storage-westeurope'
+            popd
+          azPSVersion: "latest"
+
+      - name: logout
+        run: |
+          az logout
