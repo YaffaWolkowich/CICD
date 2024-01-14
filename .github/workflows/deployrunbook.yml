@@ -1,4 +1,4 @@
-name: Deploy Kontext automation runbooks
+name: Deploy Kontext automation runbooks for each
 on:
   workflow_dispatch:
 permissions:
