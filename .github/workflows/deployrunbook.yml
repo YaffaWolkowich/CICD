@@ -15,7 +15,7 @@ jobs:
           - getadusers
           - processmanagement
           - updateuserattribute
-          # - my-runbook-try
+          - my-runbook-try
     steps:
       - uses: actions/checkout@v3
       - uses: azure/login@v1
