@@ -14,7 +14,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: Package logic
-      run: (cd github-sample/logic; mkdir -p ../output; zip -r ../output/logic.zip .)
+      run: (cd logic; mkdir -p ../output; zip -r ../output/logic.zip .)
     - name: Upload app zip package
       uses: actions/upload-artifact@v2
       with:
