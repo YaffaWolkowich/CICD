@@ -9,8 +9,8 @@ jobs:
   deploy-template:
     runs-on: ubuntu-latest
     # needs: [logic_app_build]
-    environment:
-      name: Dev
+    # environment:
+    #   name: Dev
     # steps:
     # - name: Checkout
     #   uses: actions/checkout@v1
@@ -54,7 +54,7 @@ jobs:
 
 
 
-    
+
     steps:
       - uses: actions/checkout@v2
       - uses: azure/login@v1
@@ -72,3 +72,32 @@ jobs:
           inlineScript: |
             az deployment group create -g ${{inputs.resourceGroupName}} --template-file ./templates/template.json
           azPSVersion: latest
+
+###############################################  2
+
+# - task: AzureResourceManagerTemplateDeployment@3
+#                   displayName: "Deploy ARM template"
+#                   inputs:
+#                     azureResourceManagerConnection: $(connectionName)
+#                     subscriptionName: $(subscriptionId)
+#                     resourceGroupName: $(resourceGroupName)
+#                     location: $(location)
+#                     csmFile: $(Pipeline.Workspace)/armtemplate/**/workflow.json
+#                     csmParametersFile: $(Pipeline.Workspace)/armtemplate/**/parameters.json
+#                     deploymentMode: "Incremental"
+#                     overrideParameters: -subscriptionId $(subscriptionId) -resourceGroupName $(resourceGroupName) -location $(locationParameter)
+###############################################  2
+
+##########################################################  1
+# steps:
+# - task: AzureResourceManagerTemplateDeployment@3
+#   displayName: 'ARM Template deployment: Resource Group scope'
+#   inputs:
+#     azureResourceManagerConnection: 'SubsName (XXXX)'
+#     subscriptionId: 'XXXXXXXX'
+#     resourceGroupName: 'XXXXXXX'
+#     location: 'South Central US'
+#     csmFile: '$(System.DefaultWorkingDirectory)/_EDW-AzureResources/EDWResources/ADFErrorPollingLogicApp-template.json'
+# csmParametersFile: '$(System.DefaultWorkingDirectory)/_EDW-AzureResources/EDWResources/ADFErrorPollingLogicApp-parameters.json'
+# overrideParameters: '-workflows_adffailure_logic_app_name "logic-ccok-XXXX" -workflows_teamspost_logic_app_name "logic-ccok-XXXX" -environment "dev" -app_name "EDW" -teamsName "EDW-XXXXX" -teamsChannelName "ADF-DEVXXXX" -dataFactoryName "adf-cXXXX"'
+###########################################################  1
