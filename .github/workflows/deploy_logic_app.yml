@@ -1,4 +1,4 @@
-name: "deploy logic app template"
+name: "🎵 deploy logic app template"
 
 on:
   workflow_dispatch:
@@ -70,7 +70,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            
+
             az deployment group create -g ${{inputs.resourceGroupName}} --template-file ./templates/template.json --parameters ./templates/parameters.json
           azPSVersion: latest
 
