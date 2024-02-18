@@ -75,7 +75,7 @@ jobs:
 
 ###############################################  2
 
-- task: AzureResourceManagerTemplateDeployment@3
+    - task: AzureResourceManagerTemplateDeployment@3
                   displayName: "Deploy ARM template"
                   inputs:
                     azureResourceManagerConnection: $(connectionName)
