@@ -25,7 +25,7 @@
         },
         "location": {
             "type": "string",
-            "defaultValue": "eastus",
+            "defaultValue": "East US",
             "metadata": {
                 "description": "Location for all resources."
             }
