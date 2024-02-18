@@ -70,8 +70,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            az deployment group create -g ${{inputs.resourceGroupName}} --template-file ./templates/template.json
-          --parameters "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#"
+            az deployment group create -g ${{inputs.resourceGroupName}} --template-file ./templates/template.json --parameters "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#"
           azPSVersion: latest
 
 ###############################################  2
