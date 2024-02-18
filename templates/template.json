@@ -1,52 +1,7 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "frequency": {
-            "allowedValues": [
-                "Month",
-                "Week",
-                "Day",
-                "Hour",
-                "Minute",
-                "Second"
-            ],
-            "defaultValue": "Week",
-            "type": "string"
-        },
-        "interval": {
-            "defaultValue": 1,
-            "type": "int"
-        },
-        "location": {
-            "defaultValue": "westeurope",
-            "type": "string"
-        },
-        "sites_func_get_last_fetch_time_for_each_storage_account_externalid": {
-            "defaultValue": "/subscriptions/a173eef2-33d7-4d55-b0b5-18b271f8d42b/resourceGroups/rg-three/providers/Microsoft.Web/sites/func-three-01",
-            "type": "string"
-        },
-        "sites_func_get_storage_list_by_subscription_externalid": {
-            "defaultValue": "/subscriptions/a173eef2-33d7-4d55-b0b5-18b271f8d42b/resourceGroups/rg-three/providers/Microsoft.Web/sites/func-three-03",
-            "type": "string"
-        },
-        "sites_func_get_subscription_list_externalid": {
-            "defaultValue": "/subscriptions/a173eef2-33d7-4d55-b0b5-18b271f8d42b/resourceGroups/rg-three/providers/Microsoft.Web/sites/func-three-02",
-            "type": "string"
-        },
-        "sites_func_sending_excel_by_email_and_mark_storages_for_deletion_externalid": {
-            "defaultValue": "/subscriptions/a173eef2-33d7-4d55-b0b5-18b271f8d42b/resourceGroups/rg-three/providers/Microsoft.Web/sites/func-three-05",
-            "type": "string"
-        },
-        "sites_func_test_storage_externalid": {
-            "defaultValue": "/subscriptions/a173eef2-33d7-4d55-b0b5-18b271f8d42b/resourceGroups/rg-three/providers/Microsoft.Web/sites/func-three-04",
-            "type": "string"
-        },
-        "workflows_logic_app_name": {
-            "defaultValue": "logic-app-three",
-            "type": "string"
-        }
-    },
+    "parameters": {},
     "variables": {},
     "resources": [
         {
