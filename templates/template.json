@@ -1,15 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "logicAppName": {
-            "type": "string",
-            "defaultValue":"logic-app-three",
-            "metadata": {
-                "description": "The name of the logic app to create."
-            }
-        }
-    },
     "variables": {},
     "resources": [
         {
@@ -481,5 +472,15 @@
                 "parameters": {}
             }
         }
-    ]
+    ],
+    "parameters": {
+        "workflows_logic_app_name": {
+            "defaultValue": "logic-app-three",
+            "type": "string"
+        },
+        "location": {
+            "defaultValue": "West Europe",
+            "type": "string"
+        }
+    }
 }
