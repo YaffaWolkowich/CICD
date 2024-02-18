@@ -11,6 +11,7 @@
     "parameters": {
         "logicAppName": {
             "type": "string",
+            "defaultValue":"la-pipeline-wow",
             "metadata": {
                 "description": "The name of the logic app to create."
             }
