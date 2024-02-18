@@ -65,27 +65,27 @@ jobs:
       - name: run ls
         run: ls ./templates
 
-      - name: deploy template
-        id: deploy
-        uses: azure/powershell@v1
-        with:
-          inlineScript: |
-            az deployment group create -g ${{inputs.resourceGroupName}} --template-file ./templates/template.json
-          azPSVersion: latest
+      # - name: deploy template
+      #   id: deploy
+      #   uses: azure/powershell@v1
+      #   with:
+      #     inlineScript: |
+      #       az deployment group create -g ${{inputs.resourceGroupName}} --template-file ./templates/template.json
+      #     azPSVersion: latest
 
 ###############################################  2
 
-# - task: AzureResourceManagerTemplateDeployment@3
-#                   displayName: "Deploy ARM template"
-#                   inputs:
-#                     azureResourceManagerConnection: $(connectionName)
-#                     subscriptionName: $(subscriptionId)
-#                     resourceGroupName: $(resourceGroupName)
-#                     location: $(location)
-#                     csmFile: $(Pipeline.Workspace)/armtemplate/**/workflow.json
-#                     csmParametersFile: $(Pipeline.Workspace)/armtemplate/**/parameters.json
-#                     deploymentMode: "Incremental"
-#                     overrideParameters: -subscriptionId $(subscriptionId) -resourceGroupName $(resourceGroupName) -location $(locationParameter)
+- task: AzureResourceManagerTemplateDeployment@3
+                  displayName: "Deploy ARM template"
+                  inputs:
+                    azureResourceManagerConnection: $(connectionName)
+                    subscriptionName: $(subscriptionId)
+                    resourceGroupName: $(resourceGroupName)
+                    location: $(location)
+                    csmFile: $(Pipeline.Workspace)/armtemplate/**/workflow.json
+                    csmParametersFile: $(Pipeline.Workspace)/armtemplate/**/parameters.json
+                    deploymentMode: "Incremental"
+                    overrideParameters: -subscriptionId $(subscriptionId) -resourceGroupName $(resourceGroupName) -location $(locationParameter)
 ###############################################  2
 
 ##########################################################  1

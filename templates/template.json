@@ -472,15 +472,5 @@
                 "parameters": {}
             }
         }
-    ],
-    "parameters": {
-        "workflows_logic_app_name": {
-            "defaultValue": "logic-app-three",
-            "type": "string"
-        },
-        "location": {
-            "defaultValue": "West Europe",
-            "type": "string"
-        }
-    }
+    ]
 }
