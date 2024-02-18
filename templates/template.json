@@ -1,13 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "metadata": {
-        "_generator": {
-        "name": "bicep",
-        "version": "0.15.31.15270",
-        "templateHash": "4054410166658717824"
-        }
-    },
     "parameters": {
         "logicAppName": {
             "type": "string",
@@ -58,26 +51,26 @@
                     "defaultValue": "[parameters('testUri')]"
                     }
                 },
-            "triggers": {
-                "recurrence": {
-                    "type": "[variables('type')]",
+                "triggers": {
                     "recurrence": {
-                        "frequency": "[variables('frequency')]",
-                        "interval": "[variables('interval')]"
+                        "type": "[variables('type')]",
+                        "recurrence": {
+                            "frequency": "[variables('frequency')]",
+                            "interval": "[variables('interval')]"
+                        }
                     }
-                }
-            },
-            "actions": {
-                "actionType": {
-                "type": "[variables('actionType')]",
-                "inputs": {
-                    "method": "[variables('method')]",
-                    "uri": "[parameters('testUri')]"
+                },
+                "actions": {
+                    "actionType": {
+                    "type": "[variables('actionType')]",
+                    "inputs": {
+                        "method": "[variables('method')]",
+                        "uri": "[parameters('testUri')]"
+                                }
                             }
                         }
                     }
                 }
-            }
         }
     ]
 }
