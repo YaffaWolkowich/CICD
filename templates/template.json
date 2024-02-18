@@ -6,8 +6,8 @@
         {
             "type": "Microsoft.Logic/workflows",
             "apiVersion": "2017-07-01",
-            "name": "[parameters('workflows_logic_app_name')]",
-            "location": "[parameters('location')]",
+            "name": "logic-app-three",
+            "location": "eastus",
             "properties": {
                 "state": "Enabled",
                 "definition": {
