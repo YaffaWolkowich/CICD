@@ -1,6 +1,15 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
+    "parameters": {
+        "logicAppName": {
+            "type": "string",
+            "defaultValue":"la-pipeline-wow",
+            "metadata": {
+                "description": "The name of the logic app to create."
+            }
+        }
+    },
     "variables": {},
     "resources": [
         {
