@@ -1,5 +1,5 @@
+name: 🌷 Azure ARM
 on: [push]
-  name: 🌷 Azure ARM
   jobs:
     build-and-deploy:
       runs-on: ubuntu-latest
