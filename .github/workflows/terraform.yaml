@@ -34,21 +34,42 @@ jobs:
       - name: 🧩 HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.0
       
+      # - name: 🔑 Login to Azure
+      #   id : az-login
+      #   run : az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+
+      # - name: 🏗️ Terraform
+      #   id: init
+      #   run: |
+      #     DIRECTORIES=( "main-project" )
+      #     for directory in ${DIRECTORIES[@]}; do
+      #       cd ${directory} || exit 1
+      #       terraform init -input=false
+      #       terraform plan -out=tfplan -input=false
+      #       terraform apply -input=false -auto-approve tfplan
+      #       cd ..
+      #     done
+
+
+
       - name: 🔑 Login to Azure
-        id : az-login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-        # run : az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
 
-      - name: 🏗️ Terraform
+      - name: 🏗️ Terraform Init
         id: init
-        run: |
-          DIRECTORIES=( "main-project" )
-          for directory in ${DIRECTORIES[@]}; do
-            cd ${directory} || exit 1
-            terraform init -input=false
-            terraform plan -out=tfplan -input=false
-            terraform apply -input=false -auto-approve tfplan
-            cd ..
-          done
+        run: terraform init
+
+      - name: 📋 Terraform Plan
+        id: plan
+        run: terraform plan -out=tfplan -input=false
+
+      - name: ✅ Terraform Apply
+        id: apply
+        run: terraform apply -input=false -auto-approve tfplan
+
+      # - name: ✅ Terraform Destroy
+      #   id: destroy
+      #   run: terraform destroy -input=false -auto-approve
+      #   working-directory: ./terraform
