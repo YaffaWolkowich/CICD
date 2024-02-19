@@ -2,8 +2,8 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "rg-try-again"
     storage_account_name = "sttryagain"
-    # container_name       = "terraform-state"
-    # key                  = "terraform.tfstate"
+    container_name       = "terraform-state"
+    key                  = "terraform.tfstate"
   }
 }
 
