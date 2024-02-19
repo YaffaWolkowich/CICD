@@ -79,7 +79,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            az deployment group create -g ${{inputs.resourceGroupName}} --template-file ./templates/template.json --parameters ./templates/template.parameters.json
+            az pipelines variable list --pipeline-id 12 --output table
           azPSVersion: latest
 
 ###############################################  2
