@@ -1,0 +1,32 @@
+name: "💫 deploy logic app template"
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: ['main']
+      
+    inputs:
+      resourceGroupName:
+        required: true
+
+jobs:
+  deploy-template:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
+
+      - name: ✨ run ls
+        run: ls ./templates
+
+      - name: 🪐 deploy template
+        id: deploy
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            az deployment group create -g ${{inputs.resourceGroupName}} --template-file ./templates/template.json --parameters ./templates/template.parameters.json
+          azPSVersion: latest
