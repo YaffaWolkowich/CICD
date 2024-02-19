@@ -22,6 +22,11 @@ variable DOCKER_REGISTRY_SERVER_URL {
 #   type = string
 # }
 
+variable subscription_id{
+  type    = string
+  default ="a173eef2-33d7-4d55-b0b5-18b271f8d42b"
+}
+
 variable rg_name{
   type    = string
   default ="rg-wow"
