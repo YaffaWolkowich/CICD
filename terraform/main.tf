@@ -1,3 +1,20 @@
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "NetworkWatcherRG"
+    storage_account_name = "myfirsttrail"
+    container_name       = "terraform-state"
+    key                  = "terraform.tfstate"
+  }
+}
+provider "azurerm" {
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
+  subscription_id = var.subscription_id
+}
+
 resource "azurerm_resource_group" "resource_group" {
   name     = var.rg_name
   location = var.rg_location
@@ -96,17 +113,17 @@ resource "azurerm_linux_function_app" "function_app" {
 #   count = length(var.function_app_name)
 # }
 
-# resource "azurerm_logic_app_workflow" "logic_app_workflow" {
-#   name                = var.logic_app_workflow_name
-#   location            = var.rg_location
-#   resource_group_name = var.rg_name
+resource "azurerm_logic_app_workflow" "logic_app_workflow" {
+  name                = var.logic_app_workflow_name
+  location            = var.rg_location
+  resource_group_name = var.rg_name
 
-#   workflow_parameters = {
-#     "workflows_logic_app_name" : "{ \"defaultValue\":\"${var.logic_app_workflow_name}\", \"type\" : \"string\"}"
-#     "location":"{\"defaultValue\": \"${var.rg_location}\",\"type\": \"string\" }"
-#     "sites_func_get_wow_externalid": "{\"defaultValue\": \"${azurerm_linux_function_app.function_app.id}\",\"type\": \"string\"}"
-#   }
-# }
+  workflow_parameters = {
+    "workflows_logic_app_name" : "{ \"defaultValue\":\"${var.logic_app_workflow_name}\", \"type\" : \"string\"}"
+    "location":"{\"defaultValue\": \"${var.rg_location}\",\"type\": \"string\" }"
+    "sites_func_get_wow_externalid": "{\"defaultValue\": \"${azurerm_linux_function_app.function_app.id}\",\"type\": \"string\"}"
+  }
+}
 
 data "azurerm_client_config" "current_client" {}
 
