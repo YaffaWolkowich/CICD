@@ -23,7 +23,7 @@ variable rg_name {
   default = "rg-user-disable-automation"
 }
 
-variable rg_location {  
+variable rg_location {
   type      = string
   default   =   "West Europe"
 }
