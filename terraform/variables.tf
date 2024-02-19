@@ -10,17 +10,17 @@ variable DOCKER_REGISTRY_SERVER_URL {
   type = string
 }
 
-variable key_vault_name {
-  type = string
-}
+# variable key_vault_name {
+#   type = string
+# }
 
-variable key_vault_resource_group_name {
-  type = string
-}
+# variable key_vault_resource_group_name {
+#   type = string
+# }
 
-variable key_vault_secret_excel_name {
-  type = string
-}
+# variable key_vault_secret_excel_name {
+#   type = string
+# }
 
 variable rg_name{
   type    = string
