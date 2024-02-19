@@ -1,4 +1,4 @@
-name: 🌷 Azure ARM
+name: "🌷 Azure ARM"
 
 on:
   # workflow_dispatch:
