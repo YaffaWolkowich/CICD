@@ -62,15 +62,23 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           enable-AzPSSession: true
 
-      - name: run ls
-        run: ls ./templates
+      # - name: run ls
+      #   run: ls ./templates
 
-      - name: deploy template
+      # - name: deploy template
+      #   id: deploy
+      #   uses: azure/powershell@v1
+      #   with:
+      #     inlineScript: |
+      #       az deployment group create -g ${{inputs.resourceGroupName}} --template-file ./templates/template.json --parameters ./templates/template.parameters.json
+      #     azPSVersion: latest
+
+
+      - name: ▄▀▄ List variables
         id: deploy
         uses: azure/powershell@v1
         with:
           inlineScript: |
-
             az deployment group create -g ${{inputs.resourceGroupName}} --template-file ./templates/template.json --parameters ./templates/template.parameters.json
           azPSVersion: latest
 
