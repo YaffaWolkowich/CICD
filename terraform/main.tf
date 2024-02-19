@@ -104,7 +104,7 @@ resource "azurerm_logic_app_workflow" "logic_app_workflow" {
   workflow_parameters = {
     "workflows_logic_app_name" : "{ \"defaultValue\":\"${var.logic_app_workflow_name}\", \"type\" : \"string\"}"
     "location":"{\"defaultValue\": \"${var.rg_location}\",\"type\": \"string\" }"
-    "sites_func_get_last_fetch_time_for_each_storage_account_externalid": "{\"defaultValue\": \"${azurerm_linux_function_app.linux_function_app.id}\",\"type\": \"string\"}"
+    "sites_func-get-wow_externalid": "{\"defaultValue\": \"${azurerm_linux_function_app.linux_function_app.id}\",\"type\": \"string\"}"
   }
 }
 
