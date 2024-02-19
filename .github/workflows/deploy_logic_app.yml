@@ -82,8 +82,9 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            az devops configure --defaults --org https://dev.azure.com/greendreamteam/ |
-            az pipelines variable list --pipeline-id 12 --output table
+            Get-AzureEnvironment
+# az devops configure --defaults --org https://dev.azure.com/greendreamteam/ |
+# az pipelines variable list --pipeline-id 12 --output table
           azPSVersion: latest
 
 ###############################################  2
