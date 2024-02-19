@@ -71,7 +71,7 @@ jobs:
         with:
           inlineScript: |
 
-            az deployment group create -g ${{inputs.resourceGroupName}} --template-file ./templates/template.json --parameters ./templates/tamplate.parameters.json
+            az deployment group create -g ${{inputs.resourceGroupName}} --template-file template.json --parameters tamplate.parameters.json
           azPSVersion: latest
 
 ###############################################  2
