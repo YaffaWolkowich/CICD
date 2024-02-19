@@ -1,7 +1,35 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {
+        "frequency": {
+            "type": "string"
+        },
+        "interval": {
+            "type": "int"
+        },
+        "location": {
+            "type": "string"
+        },
+        "sites_func_get_last_fetch_time_for_each_storage_account_externalid": {
+            "type": "string"
+        },
+        "sites_func_get_storage_list_by_subscription_externalid": {
+            "type": "string"
+        },
+        "sites_func_get_subscription_list_externalid": {
+            "type": "string"
+        },
+        "sites_func_sending_excel_by_email_and_mark_storages_for_deletion_externalid": {
+            "type": "string"
+        },
+        "sites_func_test_storage_externalid": {
+            "type": "string"
+        },
+        "workflows_logic_app_name": {
+            "type": "string"
+        }
+    },
     "variables": {},
     "resources": [
         {
