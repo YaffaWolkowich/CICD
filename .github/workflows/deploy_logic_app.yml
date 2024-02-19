@@ -1,10 +1,13 @@
 name: "🎵 deploy logic app template"
 
 on:
-  workflow_dispatch:
-    inputs:
-      resourceGroupName:
-        required: true
+  # workflow_dispatch:
+  push:
+    branches:
+      - ['main']
+    # inputs:
+    #   resourceGroupName:
+    #     required: true
 jobs:
   deploy-template:
     runs-on: ubuntu-latest
@@ -79,6 +82,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
+            az devops configure --defaults |
             az pipelines variable list --pipeline-id 12 --output table
           azPSVersion: latest
 
