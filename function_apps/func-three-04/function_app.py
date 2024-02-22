@@ -23,12 +23,7 @@ def func_three_04(req: func.HttpRequest) -> func.HttpResponse:
     # partition_key=data['partition_key']
     # row_key=data['row_key']
 
-    answer=storage_account_test(
-        "storage_account",
-        "partition_key",
-        "row_key",
-        "subscription_id"
-    )
+    answer=storage_account_test()
 
     #     return func.HttpResponse(json.dumps(paginated_response), mimetype="application/json")
     

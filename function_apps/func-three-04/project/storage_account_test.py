@@ -12,20 +12,20 @@ from project.connect_to_azure import (
 # from project.used_capacity_comparison import used_capacity_comparison_test
 
 
-def storage_account_test(storage_account,partitionKey,row_key,subscription_id):
+def storage_account_test():
     entity = create_object_for_documentation_table(
-        str(partitionKey),
-        str(row_key),
-        datetime.today(),
-        subscription_id,
-        'rg',
-        storage_account,
-        12.5,
+        "storage_account",
+        "partition_key",
+        "row_key",
+        "subscription_id"
+        "12.5",
         "12-21-03",
         'null',
         'alert reason',
         "null",
         "aaa",
+        "bbb",
+        "ccc",
     )
     a=upload_to_table(documentation_table, entity)
     # try:
