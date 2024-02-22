@@ -1,12 +1,32 @@
-pytest==7.4.2
-black==23.11.0
-python-dotenv==1.0.0
-azure.data.tables==12.4.0
-azure.core==1.29.5
-azure.identity==1.14.1
-azure.mgmt.storage==21.0.0
-azure.mgmt.monitor==5.0.0
-azure-keyvault-secrets
-pandas==2.1.1
+# pytest==7.4.2
+# black==23.11.0
+# python-dotenv==1.0.0
+# azure.data.tables==12.4.0
+# azure.core==1.29.5
+# azure.identity==1.14.1
+# azure.mgmt.storage==21.0.0
+# azure.mgmt.monitor==5.0.0
+# azure-keyvault-secrets
+# pandas==2.1.1
+# pytest-cov
+# azure-functions
+
+
+
+azure-cli
+azure-identity
+azure-mgmt-monitor
+azure-mgmt-consumption
+azure-mgmt-storage
+azure-mgmt-resource
+azure-storage-blob
+pytest
+pytest_mock
+black
+python-dateutil
 pytest-cov
+python-dotenv
+pytz
 azure-functions
+requests
+openpyxl
