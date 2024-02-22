@@ -40,7 +40,8 @@ def func_test_storage(req: func.HttpRequest) -> func.HttpResponse:
         logging.warn({'subscription_name':subscription_name,
                     'storage_account':storage_account,
                     'partition_key':partition_key,
-                    'row_key':row_kwy
+                    'row_key':row_key,
+                    'last_fetch_time':last_fetch_time
                     })
         object_for_alerts_to_excel = storage_account_test(
             storage_account["name"],
