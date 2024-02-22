@@ -22,7 +22,7 @@ jobs:
           # - func-get-last-fetch-time-for-each-storage-account
           # - func-get-subscription-list
           # - func-get-storage-list-by-subscription
-          # - func-test-storage          
+          # - func-test-storage
           # - func-send-excel-mark-delete
           # - func-three-01
           # - func-three-02
@@ -70,7 +70,17 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
       if: env.DIRECTORY == matrix.directory
 
-    - name: 🔖 Get release tag name
+    # - name: 🔖 Get release tag name
+    #   id: get_release
+    #   uses: cardinalby/git-get-release-action@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ github.token }}
+    #   with:
+    #     latest: true
+    #   if: env.DIRECTORY == matrix.directory
+
+
+    - name: :bookmark: Get release tag name
       id: get_release
       uses: cardinalby/git-get-release-action@v1
       env:
@@ -78,7 +88,6 @@ jobs:
       with:
         latest: true
       if: env.DIRECTORY == matrix.directory
-
     
 
     - name: 🔄 downcase REPO

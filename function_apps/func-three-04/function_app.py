@@ -1,6 +1,6 @@
 import azure.functions as func
 import json
-
+import logging
 from config.config_variables import documentation_storage_name
 from project.storage_account_test import storage_account_test
 
@@ -37,6 +37,8 @@ def func_test_storage(req: func.HttpRequest) -> func.HttpResponse:
             return func.HttpResponse(
                 json.dumps(paginated_response), mimetype="application/json"
             )
+        logging.warn({'subscription_name':subscription_name,
+                      })
         object_for_alerts_to_excel = storage_account_test(
             storage_account["name"],
             partition_key,
