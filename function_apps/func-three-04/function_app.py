@@ -11,6 +11,19 @@ from project.storage_account_test import *
 app = func.FunctionApp()
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.function_name(name="HttpTrigger1")
 @app.route(route="")
 def func_three_04(req: func.HttpRequest) -> func.HttpResponse:
