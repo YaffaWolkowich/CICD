@@ -4,41 +4,15 @@ from config.config_variables import documentation_table
 from project.alert_reason_enum import alert_reasons
 from project.connect_to_azure import (
     upload_to_table,
-    find_resource_group_name,
-    create_storage_management_client,
+    # find_resource_group_name,
+    # create_storage_management_client,
 )
-from project.last_fetch_time import check_last_fetch_is_early
-from project.send_alert_email import main_alerts
-from project.used_capacity_comparison import used_capacity_comparison_test
+# from project.last_fetch_time import check_last_fetch_is_early
+# from project.send_alert_email import main_alerts
+# from project.used_capacity_comparison import used_capacity_comparison_test
 
 
-def storage_account_test(
-    storage_account,
-    partitionKey,
-    row_key,
-    subscription_id
-):
-    # storage_client = create_storage_management_client(subscription_id)
-    # resource_group_name = find_resource_group_name(storage_account_id)
-    # used_capacity_comparison_test_result = used_capacity_comparison_test(
-    #     resource_group_name, storage_account, subscription_id
-    # )
-    # last_fetch_is_early_result = check_last_fetch_is_early(
-    #     storage_client,
-    #     used_capacity_comparison_test_result["resource_group"],
-    #     storage_account,
-    #     last_fetch_time,
-    # )
-    # alert_reason_for_check_used_capacity = (
-    #     alert_reasons.USED_CAPACITY.value
-    #     if used_capacity_comparison_test_result["alert"]
-    #     else "null"
-    # )
-    # alert_reason_for_check_last_fetch = (
-    #     alert_reasons.LAST_FETCH_TIME.value
-    #     if last_fetch_is_early_result["alert"]
-    #     else "null"
-    # )
+def storage_account_test(storage_account,partitionKey,row_key,subscription_id):
     entity = create_object_for_documentation_table(
         str(partitionKey),
         str(row_key),
@@ -51,9 +25,9 @@ def storage_account_test(
         'null',
         'alert reason',
         "null",
-        "",
+        "aaa",
     )
-    upload_to_table(documentation_table, entity)
+    a=upload_to_table(documentation_table, entity)
     # try:
     #     object_for_alerts_to_excel = check_alert(
     #         used_capacity_comparison_test_result["alert"],
@@ -66,6 +40,7 @@ def storage_account_test(
     # except Exception as e:
     #     raise e
     # return object_for_alerts_to_excel
+    return a
 
 
 # def check_alert(
@@ -128,6 +103,6 @@ def create_object_for_documentation_table(
         "alert_for_check_last_fetch": alert_for_check_last_fetch,
         "alert_reason_for_check_last_fetch": alert_reason_for_check_last_fetch,
     }
-    if last_storage_fetch_time:
-        obj["last_storage_fetch_time"] = last_storage_fetch_time
+    # if last_storage_fetch_time:
+    #     obj["last_storage_fetch_time"] = last_storage_fetch_time
     return obj
