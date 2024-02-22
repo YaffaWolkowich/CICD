@@ -27,43 +27,50 @@ def func_three_04(req: func.HttpRequest) -> func.HttpResponse:
     last_fetch_time=data['last_fetch_time']
 
     response_for_null_storages={"storage_account":"null"}
-    
-    try:
-        if storage_account['tag'] == "True" :
-            paginated_response = {
-            "value": [response_for_null_storages],
-            "nextLink": None
-            }
-            return func.HttpResponse(json.dumps(paginated_response), mimetype="application/json")
+#     {
+#   "last_fetch_time": "2024-02-22 06:49:17.274355+00:00",
+#   "partition_key": "0",
+#   "row_key": 1,
+#   "storage_account": {
+#     "id": "/subscriptions/a173eef2-33d7-4d55-b0b5-18b271f8d42b/resourceGroups/checkWorkfolwStorage/providers/Microsoft.Storage/storageAccounts/checkworkfolwstoraga55d",
+#     "name": "checkworkfolwstoraga55d",
+#     "tag": "false"
+#   },
+#   "subscription_id": "a173eef2-33d7-4d55-b0b5-18b271f8d42b",
+#   "subscription_name": "Moon- azure camp"
+# }
+    # try:
+    #     if storage_account['tag'] == "True" :
+    #         paginated_response = {
+    #         "value": [response_for_null_storages],
+    #         "nextLink": None
+    #         }
+    #         return func.HttpResponse(json.dumps(paginated_response), mimetype="application/json")
         
-        if(storage_account['name']==documentation_storage_name):
-            paginated_response = {
-            "value": [response_for_null_storages],
-            "nextLink": None
-            }
-            return func.HttpResponse(json.dumps(paginated_response), mimetype="application/json")
+    #     if(storage_account['name']==documentation_storage_name):
+    #         paginated_response = {
+    #         "value": [response_for_null_storages],
+    #         "nextLink": None
+    #         }
+    #         return func.HttpResponse(json.dumps(paginated_response), mimetype="application/json")
 
         
-        object_for_alerts_to_excel=storage_account_test(
-            storage_account['name'],
-            partition_key,
-            row_key,
-            subscription_id,
-            subscription_name,
-            storage_account['id'],
-            last_fetch_time
-        )
-
-    except Exception as e:
-        response_for_null_storages={"storage_account":storage_account['name'],"alert_body":"null"}
-        paginated_response = {
+    object_for_alerts_to_excel=storage_account_test(
+        storage_account['name'],
+        partition_key,
+        row_key,
+        subscription_id
+    )
+    # except Exception as e:
+    response_for_null_storages={"storage_account":storage_account['name'],"alert_body":"null"}
+    paginated_response = {
         "value": [response_for_null_storages],
         "nextLink": None
     }
-        return func.HttpResponse(json.dumps(paginated_response), mimetype="application/json")
+    #     return func.HttpResponse(json.dumps(paginated_response), mimetype="application/json")
     
-    paginated_response = {
-        "value": [object_for_alerts_to_excel],
-        "nextLink": None
-    }
+    # paginated_response = {
+    #     "value": [object_for_alerts_to_excel],
+    #     "nextLink": None
+    # }
     return func.HttpResponse(json.dumps(paginated_response), mimetype="application/json")

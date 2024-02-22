@@ -9,47 +9,47 @@ import json
 from config.config_variables import connection_string
 
 
-def create_monitor_management_client(sub_id):
-    monitor_client = MonitorManagementClient(
-        credential=DefaultAzureCredential(), subscription_id=sub_id
-    )
-    return monitor_client
+# def create_monitor_management_client(sub_id):
+#     monitor_client = MonitorManagementClient(
+#         credential=DefaultAzureCredential(), subscription_id=sub_id
+#     )
+#     return monitor_client
 
 
-def create_storage_management_client(sub_id):
-    storage_client = StorageManagementClient(
-        credential=DefaultAzureCredential(), subscription_id=sub_id
-    )
-    return storage_client
+# def create_storage_management_client(sub_id):
+#     storage_client = StorageManagementClient(
+#         credential=DefaultAzureCredential(), subscription_id=sub_id
+#     )
+#     return storage_client
 
 
-def retrieve_data_from_table(
-    flag, con_str, table_name, query_filter, parameters="None", select=["*"]
-):
-    try:
-        table = TableClient.from_connection_string(con_str, table_name)
-        queried_entities = table.query_entities(
-            query_filter=query_filter, select=select, parameters=parameters
-        )
-        return convert_to_json(queried_entities) if flag else queried_entities
-    except ResourceNotFoundError:
-        raise ResourceNotFoundError("This table does not exist")
+# def retrieve_data_from_table(
+#     flag, con_str, table_name, query_filter, parameters="None", select=["*"]
+# ):
+#     try:
+#         table = TableClient.from_connection_string(con_str, table_name)
+#         queried_entities = table.query_entities(
+#             query_filter=query_filter, select=select, parameters=parameters
+#         )
+#         return convert_to_json(queried_entities) if flag else queried_entities
+#     except ResourceNotFoundError:
+#         raise ResourceNotFoundError("This table does not exist")
 
 
-def convert_to_json(queried_entities):
-    return list((json.loads(pd.Series.to_json(pd.Series(queried_entities)))).values())
+# def convert_to_json(queried_entities):
+#     return list((json.loads(pd.Series.to_json(pd.Series(queried_entities)))).values())
 
 
-def find_resource_group_name(storage_account_id):
-    if storage_account_id.find("resourceGroups") != -1:
-        resource_group_name = storage_account_id[
-            storage_account_id.find("resourceGroups") + 15 : storage_account_id.find(
-                "/", storage_account_id.find("resourceGroups") + 15
-            )
-        ]
-    else:
-        resource_group_name = ""
-    return resource_group_name
+# def find_resource_group_name(storage_account_id):
+#     if storage_account_id.find("resourceGroups") != -1:
+#         resource_group_name = storage_account_id[
+#             storage_account_id.find("resourceGroups") + 15 : storage_account_id.find(
+#                 "/", storage_account_id.find("resourceGroups") + 15
+#             )
+#         ]
+#     else:
+#         resource_group_name = ""
+#     return resource_group_name
 
 
 def upload_to_table(my_table_name, my_entity):
