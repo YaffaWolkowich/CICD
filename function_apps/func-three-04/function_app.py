@@ -18,8 +18,8 @@ app = func.FunctionApp()
 def func_three_04(req: func.HttpRequest) -> func.HttpResponse:
     answer=storage_account_test(
         "storage_account",
-        1,
         2,
+        3,
         "subscription_id",
         "subscription_name",
         "storage_account",
