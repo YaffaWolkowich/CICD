@@ -12,12 +12,9 @@ credential = DefaultAzureCredential()
 client = SecretClient(vault_url=keyvault_uri, credential=credential)
 secret = client.get_secret(secret_name)
 connection_string = secret.value
-time_period_for_check_last_fetch = os.getenv(
-    "DESIRED_TIME_PERIOD_SINCE_LAST_RETRIEVAL_FOR_CHECK_LAST_FETCH"
-)
-time_period_for_check_used_capacity = os.getenv(
-    "DESIRED_TIME_PERIOD_SINCE_LAST_RETRIEVAL_FOR_CHECK_USED_CAPACITY"
-)
+
+time_period_for_check_last_fetch = os.getenv("DESIRED_TIME_PERIOD_SINCE_LAST_RETRIEVAL_FOR_CHECK_LAST_FETCH")
+time_period_for_check_used_capacity = os.getenv("DESIRED_TIME_PERIOD_SINCE_LAST_RETRIEVAL_FOR_CHECK_USED_CAPACITY")
 time_index_for_check_last_fetch = os.getenv("TIME_INDEX_FOR_CHECK_LAST_FETCH")
 time_index_for_check_used_capacity = os.getenv("TIME_INDEX_FOR_CHECK_USED_CAPACITY")
 freq_automation_test_type = os.getenv("FREQ_AUTOMATION_TEST_TYPE")
