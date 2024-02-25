@@ -65,8 +65,6 @@ def storage_account_test(
     return ans
 
 
-
-
 def create_object_for_documentation_table(
     partitionKey,
     row_key,
