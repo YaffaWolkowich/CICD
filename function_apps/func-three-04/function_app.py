@@ -10,7 +10,12 @@ from project.storage_account_test import *
 from config.config_variables import connection_string
 
 
-def func_three_04():
+app = func.FunctionApp()
+
+
+@app.function_name(name="HttpTrigger1")
+@app.route(route="")
+def func_three_04(req: func.HttpRequest) -> func.HttpResponse:
     answer=storage_account_test(
         "storage_account",
         1,
@@ -53,8 +58,10 @@ def storage_account_test(
     )
     logging.warn("entity")
     logging.warn(entity)
+
     ans=upload_to_table(documentation_table, entity)
     logging.warn(f"VVV {ans}")
+
     return ans
 
 
@@ -94,12 +101,16 @@ def create_object_for_documentation_table(
 
 def upload_to_table(my_table_name, my_entity):
     logging.info("---------------------------")
-    table_client = TableClient.from_connection_string(
-        connection_string, table_name=my_table_name
-    )
-    logging.warning(f"table_client - {table_client}")
-    table_client.create_entity(entity=my_entity)
-    logging.info("++++++++++++++++++++++++++++++++++++")
+    try:
+        table_client = TableClient.from_connection_string(
+            connection_string, table_name=my_table_name
+        )
+        logging.warning(f"table_client - {table_client}")
+        table_client.create_entity(entity=my_entity)
+        logging.info("++++++++++++++++++++++++++++++++++++")
+    except Exception as e:
+        logging.warn("????????????????????????????????????")
+        logging.info(f"ppppp {e}")
+        return False
     return True
 
-func_three_04()
