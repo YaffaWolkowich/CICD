@@ -34,7 +34,8 @@ def retrieve_data_from_table(
             query_filter=query_filter, select=select, parameters=parameters
         )
         logging.info(f"<><><><><><><><><><><><><><><><><><><><><><{convert_to_json(queried_entities)}")
-        return convert_to_json(queried_entities)
+        logging.warn(f"<><><><><><><><><><><><><><><><><><><><><><{queried_entities}")
+        return queried_entities
         # return convert_to_json(queried_entities) if flag else queried_entities
     
     except ResourceNotFoundError:
