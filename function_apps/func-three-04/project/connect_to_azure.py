@@ -5,7 +5,6 @@ from azure.mgmt.storage import StorageManagementClient
 from azure.mgmt.monitor import MonitorManagementClient
 import pandas as pd
 import json
-import logging
 
 from config.config_variables import connection_string
 
@@ -54,13 +53,10 @@ def find_resource_group_name(storage_account_id):
 
 
 def upload_to_table(my_table_name, my_entity):
-    logging.info("in upload to table")
-    try:
-        table_client = TableClient.from_connection_string(
-            connection_string, table_name=my_table_name
-        )
-        table_client.create_entity(entity=my_entity)
-    except Exception as e:
-        logging.info(f"???!!! {e}")
-    logging.warn("TRUE")
+
+    table_client = TableClient.from_connection_string(
+        connection_string, table_name=my_table_name
+    )
+    table_client.create_entity(entity=my_entity)
+
     return True

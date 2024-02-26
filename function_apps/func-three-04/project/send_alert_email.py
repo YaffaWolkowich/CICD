@@ -7,10 +7,11 @@ from config.config_variables import (
     alerts_documentation,
     http_trigger_url,
 )
-
+import logging
 
 def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_name):
     try:
+        logging.info("main alerts")
         manager_information = retrieve_data_from_table(
             True,
             con_str,
@@ -19,6 +20,7 @@ def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_na
             {"subscription_name": subscription_name},
             ["subName", "subManagerMail"],
         )[0]
+        logging.warn(f"manager_information {manager_information}")
         requests.post(
             http_trigger_url,
             json={
@@ -26,10 +28,13 @@ def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_na
                 "subject": "Storage Account Alert",
                 "body": email_body,
                 "excel": None,
-            },
+            }
         )
-    except Exception:
+        logging.warn("-------------------------------------------------")
+    except Exception as e:
+        logging.warn(f"warning: {e}")
         manager_information = {"subName": "null", "subManagerMail": "null"}
+
     alert_to_excel = add_entity_to_alerts_documentation(
         manager_information, storage_name, email_body, partitionKey, row_key
     )

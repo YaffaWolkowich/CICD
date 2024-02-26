@@ -58,8 +58,8 @@ def storage_account_test(
         last_fetch_is_early_result["alert"],
         alert_reason_for_check_last_fetch,
     )
-    logging.info("before upload to table")
     upload_to_table(documentation_table, entity)
+    logging.warn("--------  after upload to table")
     try:
         object_for_alerts_to_excel = check_alert(
             used_capacity_comparison_test_result["alert"],
@@ -82,6 +82,7 @@ def check_alert(
     row_key,
     subscription_name,
 ):
+    logging.warning("in check alert")
     alert = used_capacity_comparison_test_result or last_fetch_is_early_result
     if alert:
         alert_reason = (
@@ -98,6 +99,7 @@ def check_alert(
         if alert_reason != "":
             alert_reason = ":storage account " + storage_name + "\n" + alert_reason
             try:
+                logging.warn("in try before main alert")
                 object_for_alerts_to_excel = main_alerts(
                     storage_name, alert_reason, partitionKey, row_key, subscription_name
                 )
