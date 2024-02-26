@@ -20,8 +20,9 @@ def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_na
             "subName eq @subscription_name",
             {"subscription_name": subscription_name},
             ["subName", "subManagerMail"],
-        )[0]
+        )
         logging.warn(f"manager_information {manager_information}")
+        logging.warn(f"manager_information {manager_information[0]}")
         requests.post(
             http_trigger_url,
             json={
