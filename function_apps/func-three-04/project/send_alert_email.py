@@ -31,7 +31,7 @@ def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_na
                 "excel": None,
             }
         )
-        logging.warn("-------------------------------------------------")
+        logging.warn("----------++++++++++++++++++++++----------------")
     except Exception as e:
         logging.warn(f"warning: {e}")
         manager_information = {"subName": "null", "subManagerMail": "null"}

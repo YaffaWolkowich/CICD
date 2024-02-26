@@ -5,6 +5,7 @@ from azure.mgmt.storage import StorageManagementClient
 from azure.mgmt.monitor import MonitorManagementClient
 import pandas as pd
 import json
+import logging
 
 from config.config_variables import connection_string
 
@@ -26,14 +27,20 @@ def create_storage_management_client(sub_id):
 def retrieve_data_from_table(
     flag, con_str, table_name, query_filter, parameters="None", select=["*"]
 ):
+    logging.info("------------------------------------")
     try:
         table = TableClient.from_connection_string(con_str, table_name)
         queried_entities = table.query_entities(
             query_filter=query_filter, select=select, parameters=parameters
         )
+        logging.info(f"<><><><><><><><><><><><><><><><><><><><><><{convert_to_json(queried_entities)}")
         return convert_to_json(queried_entities) if flag else queried_entities
+    
     except ResourceNotFoundError:
+        logging.warn("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         raise ResourceNotFoundError("This table does not exist")
+    except Exception as e:
+        logging.warn(f"exception {e}")
 
 
 def convert_to_json(queried_entities):
