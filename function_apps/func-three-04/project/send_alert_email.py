@@ -1,6 +1,6 @@
 import datetime
 import requests
-
+from project.connect_to_azure import convert_to_json
 from project.connect_to_azure import upload_to_table, retrieve_data_from_table
 from config.config_variables import (
     connection_string as con_str,
@@ -23,6 +23,9 @@ def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_na
             {"subscription_name": subscription_name},
             ["subName", "subManagerMail"],
         )
+
+        logging.warn(f"manager_information {manager_information}")
+        manager_information=convert_to_json(manager_information)
         logging.warn(f"manager_information {manager_information}")
         logging.warn(f"manager_information {manager_information[0]}")
         requests.post(
