@@ -17,7 +17,7 @@ variable subscription_id{
 
 variable rg_name{
   type    = string
-  default ="rg-wow1"
+  default ="rg-wow-first"
 }
 
 variable rg_location {
@@ -27,17 +27,17 @@ variable rg_location {
 
 variable storage_account_name {
   type    = string
-  default = "stwow1"
+  default = "stwowfirst"
 }
 
 variable app_service_plan_name{
   type    = string
-  default = "app-func-wow1"
+  default = "app-func-wow-first"
 }
 
 variable function_app_name {
   type    = string
-  default = "func-wow11"
+  default = "func-wow-first"
 }
 
 variable IMAGE_NAME {
