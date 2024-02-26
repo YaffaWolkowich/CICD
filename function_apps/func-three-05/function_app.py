@@ -33,7 +33,7 @@ def func_send_excel_mark_delete(req: func.HttpRequest) -> func.HttpResponse:
                 "recipient_email": main_manager,
                 "subject": "Summary Alerts For Storage Accounts",
                 "body": "summary file",
-                "excel": "alert_file.xlsx"
+                "excel": "alert_file.xlsx",
             },
         )
         deleted_storages(documentation_table, int(partition_key) - 1, all_storages)
