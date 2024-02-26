@@ -13,6 +13,8 @@ import logging
 def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_name):
     try:
         logging.info("main alerts")
+        logging.warn("???????????????????")
+        logging.warn(subscription_name)
         manager_information = retrieve_data_from_table(
             True,
             con_str,
