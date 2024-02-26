@@ -4,18 +4,19 @@ import requests
 from project.connect_to_azure import upload_to_table, retrieve_data_from_table
 from config.config_variables import (
     connection_string as con_str,
+    managers_table,
     alerts_documentation,
     http_trigger_url,
 )
 import logging
-
+# להוסיף במשתנים את managers_table
 def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_name):
     try:
         logging.info("main alerts")
         manager_information = retrieve_data_from_table(
             True,
             con_str,
-            "subscriptionManagersRealy",
+            managers_table,
             "subName eq @subscription_name",
             {"subscription_name": subscription_name},
             ["subName", "subManagerMail"],
