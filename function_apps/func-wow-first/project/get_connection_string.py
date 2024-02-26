@@ -1,14 +1,13 @@
 from azure.identity import DefaultAzureCredential
-from azure.keyvault.secrets import SecretClient
-from config import config_variables
+# from azure.keyvault.secrets import SecretClient
 import msal
 
 credentials = DefaultAzureCredential()
 
-def get_connection_string_from_keyvault(secret_name):
-    client = SecretClient(config_variables.keyvault_uri, credential = credentials)
-    keyVaultNameValue = client.get_secret(secret_name)
-    return keyVaultNameValue.value
+# def get_connection_string_from_keyvault():
+#     # client = SecretClient(config_variables.keyvault_uri, credential = credentials)
+#     # keyVaultNameValue = client.get_secret(secret_name)
+#     return 
 
 
 def get_access_token(client_id, client_secret, tenant_id):
@@ -20,5 +19,3 @@ def get_access_token(client_id, client_secret, tenant_id):
 
     if "access_token" in result:
         return result["access_token"]
-  
-
