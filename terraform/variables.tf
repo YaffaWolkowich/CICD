@@ -10,18 +10,6 @@ variable DOCKER_REGISTRY_SERVER_URL {
   type = string
 }
 
-# variable key_vault_name {
-#   type = string
-# }
-
-# variable key_vault_resource_group_name {
-#   type = string
-# }
-
-# variable key_vault_secret_excel_name {
-#   type = string
-# }
-
 variable subscription_id{
   type    = string
   default ="a173eef2-33d7-4d55-b0b5-18b271f8d42b"
@@ -29,7 +17,7 @@ variable subscription_id{
 
 variable rg_name{
   type    = string
-  default ="rg-wow"
+  default ="rg-wow1"
 }
 
 variable rg_location {
@@ -39,47 +27,18 @@ variable rg_location {
 
 variable storage_account_name {
   type    = string
-  default = "stwow"
+  default = "stwow1"
 }
-
-# variable key_vault_secret_name {
-#   type    = string
-#   default = "CONNECTION-STRING-MANAGEMENT-STORAGES"
-# }
 
 variable app_service_plan_name{
   type    = string
-  default = "app-func-wow"
+  default = "app-func-wow1"
 }
 
 variable function_app_name {
   type    = string
-  default = "func-wow"
+  default = "func-wow1"
 }
-
-# variable FREQ_AUTOMATION_TEST_TYPE {
-#   type    = string
-#   default = "Week"
-#   validation {
-#     condition = contains(["Month","Week","Day","Hour","Minute","Second"], var.FREQ_AUTOMATION_TEST_TYPE)
-#     error_message = "Valid values for var: FREQ_AUTOMATION_TEST_TYPE are (Month,Week,Day,Hour,Minute,Second)."
-#   }
-# }
-
-# variable FREQ_AUTOMATION_TEST_NUMBER {
-#   type    = number
-#   default = 1
-# }
-
-# variable logic_app_workflow_name {
-#   type    = string
-#   default = "logic-app-wow"
-# }
-
-# variable table_name {
-#   type    = list(string)
-#   default = [ "documentation","deletedStoragesAcounts","alertsDocumentation" ]
-# }
 
 variable IMAGE_NAME {
   type    = string
