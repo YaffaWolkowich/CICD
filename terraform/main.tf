@@ -1,7 +1,7 @@
 terraform {
   backend "azurerm" {
     resource_group_name  = "NetworkWatcherRG"
-    storage_account_name = "myfirsttrail"
+    storage_account_name = "mysecondtrail"
     container_name       = "terraform-state"
     key                  = "terraform.tfstate"
   }
