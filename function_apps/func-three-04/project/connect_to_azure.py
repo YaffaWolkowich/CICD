@@ -27,7 +27,7 @@ def create_storage_management_client(sub_id):
 def retrieve_data_from_table(
     flag, con_str, table_name, query_filter, parameters="None", select=["*"]
 ):
-    logging.info("------------------------------------")
+    logging.info(f"-------{table_name}--------------")
     try:
         table = TableClient.from_connection_string(con_str, table_name)
         queried_entities = table.query_entities(
