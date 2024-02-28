@@ -8,12 +8,10 @@ from config.config_variables import (
     alerts_documentation,
     http_trigger_url,
 )
-import logging
-# להוסיף במשתנים את managers_table
+
+
 def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_name):
     try:
-        logging.info("main alerts")
-        logging.warn(f"sub_name {subscription_name}")
         manager_information = retrieve_data_from_table(
             True,
             con_str,
@@ -22,7 +20,6 @@ def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_na
             {"subscription_name": subscription_name},
             ["subName", "subManagerMail"],
         )[0]
-        print(f"manager_information {manager_information}")
         requests.post(
             http_trigger_url,
             json={
@@ -32,9 +29,7 @@ def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_na
                 "excel": None,
             }
         )
-        print("----------++++++++++++++++++++++----------------")
-    except Exception as e:
-        print(f"warning: {e}")
+    except Exception:
         manager_information = {"subName": "null", "subManagerMail": "null"}
 
     alert_to_excel = add_entity_to_alerts_documentation(

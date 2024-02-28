@@ -6,13 +6,12 @@ import os
 load_dotenv()
 
 
-# keyvault_uri = os.getenv("KEYVAULT_URI")
-# secret_name = os.getenv("SECRET")
-# credential = DefaultAzureCredential()
-# client = SecretClient(vault_url=keyvault_uri, credential=credential)
-# secret = client.get_secret(secret_name)
-# connection_string = secret.value
-connection_string="DefaultEndpointsProtocol=https;AccountName=stchaya3;AccountKey=aaGOwgUsqIZVy0dn51Wm1Ah36Z94StJFXYivozIteHijQVMrZwLtR3gd+ySK/xgcipm6ICBPgmnu+AStwmggTg==;EndpointSuffix=core.windows.net"
+keyvault_uri = os.getenv("KEYVAULT_URI")
+secret_name = os.getenv("SECRET")
+credential = DefaultAzureCredential()
+client = SecretClient(vault_url=keyvault_uri, credential=credential)
+secret = client.get_secret(secret_name)
+connection_string = secret.value
 time_period_for_check_last_fetch = os.getenv(
     "DESIRED_TIME_PERIOD_SINCE_LAST_RETRIEVAL_FOR_CHECK_LAST_FETCH"
 )

@@ -5,7 +5,6 @@ from azure.mgmt.storage import StorageManagementClient
 from azure.mgmt.monitor import MonitorManagementClient
 import pandas as pd
 import json
-import logging
 
 from config.config_variables import connection_string
 
@@ -27,25 +26,22 @@ def create_storage_management_client(sub_id):
 def retrieve_data_from_table(
     flag, con_str, table_name, query_filter, parameters="None", select=["*"]
 ):
-    logging.info(f"-------{table_name}--------------")
     try:
         table = TableClient.from_connection_string(con_str, table_name)
         queried_entities = table.query_entities(
             query_filter=query_filter, select=select, parameters=parameters
         )
-        a=[]
-        for entity_chosen in queried_entities:
-            print(entity_chosen)
-            a.append(entity_chosen)
+        # a=[]
+        # for entity_chosen in queried_entities:
+        #     print(entity_chosen)
+        #     a.append(entity_chosen)
         
-        print(f"aaaaaa{a}")
-        return a if flag else queried_entities
+        # print(f"aaaaaa{a}")
+        # return a if flag else queried_entities
+        return convert_to_json(queried_entities) if flag else queried_entities
 
     except ResourceNotFoundError:
-        logging.warn("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         raise ResourceNotFoundError("This table does not exist")
-    except Exception as e:
-        logging.warn(f"exception {e}")
 
 
 def convert_to_json(queried_entities):
@@ -65,7 +61,6 @@ def find_resource_group_name(storage_account_id):
 
 
 def upload_to_table(my_table_name, my_entity):
-    print(f"my_table_name - {my_table_name}")
     table_client = TableClient.from_connection_string(
         connection_string, table_name=my_table_name
     )
