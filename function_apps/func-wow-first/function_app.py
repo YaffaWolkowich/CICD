@@ -1,7 +1,6 @@
 import project
 import json
 import requests
-from project.get_connection_string import get_access_token
 from project.send_email import build_email_message
 import config.config_variables
 import azure.functions as func
@@ -19,26 +18,20 @@ def send_email_function(req: func.HttpRequest) -> func.HttpResponse:
     logging.info(req_body.get('excel'))
     message = build_email_message(req_body.get('recipient_email'), req_body.get('subject'), req_body.get('body'), req_body.get('excel'))
     email_data = json.dumps(message)
-    logging.info("00000000000000000000000000000000000")
-    logging.warn(f"email data - {email_data}")
-    try:
-        client_id = config.config_variables.client_id
-        client_secret = config.config_variables.client_secret
-        tenant_id = config.config_variables.tenant_id
-        graph_url = config.config_variables.graph_url
-        access_token = get_access_token(client_id, client_secret, tenant_id)
-        requests.post(
-            graph_url,
-            headers = {
-                "Authorization": "Bearer " + access_token,
-                "Content-Type": "application/json",
-            },
-            data = email_data,
-        )
-        logging.info("The email was sent")
-    except Exception as e:
-        logging.warn("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        logging.info(f"---()()():     {e}")
+    client_id = config.config_variables.client_id
+    client_secret = config.config_variables.client_secret
+    tenant_id = config.config_variables.tenant_id
+    graph_url = config.config_variables.graph_url
+    access_token = project.get_connection_string.get_access_token(client_id, client_secret, tenant_id)
+    requests.post(
+        graph_url,
+        headers = {
+            "Authorization": "Bearer " + access_token,
+            "Content-Type": "application/json",
+        },
+        data = email_data,
+    ) 
+    logging.info("The email was sent")
     return func.HttpResponse(
         "This HTTP triggered function executed successfully.",
         status_code = 200
