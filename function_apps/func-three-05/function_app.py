@@ -27,6 +27,10 @@ def func_send_excel_mark_delete(req: func.HttpRequest) -> func.HttpResponse:
         partition_key = data["partition_key"]
         all_storages = data["all_storages"]
         write_and_upload(excel_connection_string, alerts_to_excel)
+        logging.warn("finish uploading111111111111111111111111111111111111111111111")
+    except Exception as e:
+        logging.warn(f"-<<->>-{e}")
+    try:
         requests.post(
             http_trigger_url,
             json={
@@ -36,8 +40,9 @@ def func_send_excel_mark_delete(req: func.HttpRequest) -> func.HttpResponse:
                 "excel": "alert_file.xlsx",
             },
         )
-        # deleted_storages(documentation_table, int(partition_key) - 1, all_storages)
     except Exception as e:
-        logging.warn(f"-<<->>-{e}")
+        logging.info("????????????????????<>><><><>>>>>>>>>>>>>>")
+        logging.warn(f"[[][][[][]]]   {e}")
+        # deleted_storages(documentation_table, int(partition_key) - 1, all_storages)
 
     return func.HttpResponse("success - end logic app", status_code=200)
