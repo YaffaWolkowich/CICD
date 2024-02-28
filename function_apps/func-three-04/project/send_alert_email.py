@@ -1,6 +1,6 @@
 import datetime
 import requests
-from project.connect_to_azure import convert_to_json
+
 from project.connect_to_azure import upload_to_table, retrieve_data_from_table
 from config.config_variables import (
     connection_string as con_str,
@@ -13,8 +13,7 @@ import logging
 def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_name):
     try:
         logging.info("main alerts")
-        logging.warn("???????????????????")
-        logging.warn(subscription_name)
+        logging.warn(f"sub_name {subscription_name}")
         manager_information = retrieve_data_from_table(
             True,
             con_str,
@@ -22,24 +21,20 @@ def main_alerts(storage_name, email_body, partitionKey, row_key, subscription_na
             "subName eq @subscription_name",
             {"subscription_name": subscription_name},
             ["subName", "subManagerMail"],
-        )
-
-        logging.warn(f"manager_information {manager_information}")
-        manager_information=convert_to_json(manager_information)
-        logging.warn(f"manager_information {manager_information}")
-        logging.warn(f"manager_information {manager_information[0]}")
+        )[0]
+        print(f"manager_information {manager_information}")
         requests.post(
             http_trigger_url,
             json={
-                "recipient_email": manager_information["sub_manager_email"],
+                "recipient_email": manager_information["subManagerMail"],
                 "subject": "Storage Account Alert",
                 "body": email_body,
                 "excel": None,
             }
         )
-        logging.warn("----------++++++++++++++++++++++----------------")
+        print("----------++++++++++++++++++++++----------------")
     except Exception as e:
-        logging.warn(f"warning: {e}")
+        print(f"warning: {e}")
         manager_information = {"subName": "null", "subManagerMail": "null"}
 
     alert_to_excel = add_entity_to_alerts_documentation(

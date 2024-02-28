@@ -33,11 +33,14 @@ def retrieve_data_from_table(
         queried_entities = table.query_entities(
             query_filter=query_filter, select=select, parameters=parameters
         )
-        logging.info(f"<><><><><><><><><><><><><><><><><><><><><><{convert_to_json(queried_entities)}")
-        logging.warn(f"<><><><><><><><><><><><><><><><><><><><><><{queried_entities}")
-        return queried_entities
-        # return convert_to_json(queried_entities) if flag else queried_entities
-    
+        a=[]
+        for entity_chosen in queried_entities:
+            print(entity_chosen)
+            a.append(entity_chosen)
+        
+        print(f"aaaaaa{a}")
+        return a if flag else queried_entities
+
     except ResourceNotFoundError:
         logging.warn("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         raise ResourceNotFoundError("This table does not exist")
@@ -62,7 +65,7 @@ def find_resource_group_name(storage_account_id):
 
 
 def upload_to_table(my_table_name, my_entity):
-
+    print(f"my_table_name - {my_table_name}")
     table_client = TableClient.from_connection_string(
         connection_string, table_name=my_table_name
     )
