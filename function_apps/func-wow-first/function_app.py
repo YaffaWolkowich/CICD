@@ -21,20 +21,24 @@ def send_email_function(req: func.HttpRequest) -> func.HttpResponse:
     email_data = json.dumps(message)
     logging.info("00000000000000000000000000000000000")
     logging.warn(f"email data - {email_data}")
-    client_id = config.config_variables.client_id
-    client_secret = config.config_variables.client_secret
-    tenant_id = config.config_variables.tenant_id
-    graph_url = config.config_variables.graph_url
-    access_token = get_access_token(client_id, client_secret, tenant_id)
-    requests.post(
-        graph_url,
-        headers = {
-            "Authorization": "Bearer " + access_token,
-            "Content-Type": "application/json",
-        },
-        data = email_data,
-    )
-    logging.info("The email was sent")
+    try:
+        client_id = config.config_variables.client_id
+        client_secret = config.config_variables.client_secret
+        tenant_id = config.config_variables.tenant_id
+        graph_url = config.config_variables.graph_url
+        access_token = get_access_token(client_id, client_secret, tenant_id)
+        requests.post(
+            graph_url,
+            headers = {
+                "Authorization": "Bearer " + access_token,
+                "Content-Type": "application/json",
+            },
+            data = email_data,
+        )
+        logging.info("The email was sent")
+    except Exception as e:
+        logging.warn("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        logging.info(f"---()()():     {e}")
     return func.HttpResponse(
         "This HTTP triggered function executed successfully.",
         status_code = 200
