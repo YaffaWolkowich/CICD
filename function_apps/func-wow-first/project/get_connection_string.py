@@ -8,7 +8,8 @@ credentials = DefaultAzureCredential()
 def get_connection_string_from_keyvault(secret_name):
     client = SecretClient(config_variables.keyvault_uri, credential = credentials)
     keyVaultNameValue = client.get_secret(secret_name)
-    return keyVaultNameValue.value
+    return "DefaultEndpointsProtocol=https;AccountName=myfirsttrail;AccountKey=bz3aax2d3IX7b3ngkc73W+CqpzKRvUj4So1zAuUxlrpGDuzPDeOGT7tdwD4UiLzSu9iBO6jT6c69+AStETr8tg==;EndpointSuffix=core.windows.net"
+    # return keyVaultNameValue.value
 
 
 def get_access_token(client_id, client_secret, tenant_id):
