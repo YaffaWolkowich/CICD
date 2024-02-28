@@ -3,21 +3,21 @@ from azure.data.tables import TableClient
 import json
 import pandas as pd
 
-from config.config_variables import connection_string, deleted_accounts_table
+from config.config_variables import excel_connection_string, deleted_accounts_table
 
 
 def deleted_storages(table_name, test_number, all_storages):
     parameters = {"name": str(test_number)}
     last_test_storages = retrieve_data_from_table(
         False,
-        connection_string,
+        excel_connection_string,
         table_name,
         query_filter="PartitionKey eq @name",
         parameters=parameters,
         select=["PartitionKey,storage_name"],
     )
     delete_storages = check_deleted_storage(all_storages, last_test_storages)
-    upload_deleted_storages_table(connection_string, table_name, delete_storages)
+    upload_deleted_storages_table(excel_connection_string, table_name, delete_storages)
 
 
 def retrieve_data_from_table(
@@ -66,7 +66,7 @@ def upload_deleted_storages_table(conn_str, table_name, delete_storages):
 
 def upload_to_table(my_table_name, my_entity):
     table_client = TableClient.from_connection_string(
-        connection_string, table_name=my_table_name
+        excel_connection_string, table_name=my_table_name
     )
     table_client.create_entity(entity=my_entity)
     return True
