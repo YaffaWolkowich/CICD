@@ -28,8 +28,8 @@ jobs:
           # - func-three-02
           # - func-three-03
           # - func-three-04
-          - func-three-05
-          # - func-wow-first
+          # - func-three-05
+          - func-wow-first
 
 
     steps:
