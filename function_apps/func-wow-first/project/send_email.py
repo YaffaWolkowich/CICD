@@ -9,7 +9,7 @@ def build_email_message(recipient_email, subject, body, excel):
     logging.info(f"subject - {subject}")
     logging.info(f"body - {body}")
     logging.info(f"excel - {excel}")
-    if excel != None:
+    if excel :
         logging.warn("excel is not None")
         attachment_file = project.download_excel.download_blob_excel(excel)
         attachment_file_base64 = base64.b64encode(attachment_file).decode("utf-8")
