@@ -36,7 +36,7 @@ def func_send_excel_mark_delete(req: func.HttpRequest) -> func.HttpResponse:
                 "excel": "alert_file.xlsx",
             },
         )
-        deleted_storages(documentation_table, int(partition_key) - 1, all_storages)
+        # deleted_storages(documentation_table, int(partition_key) - 1, all_storages)
     except Exception as e:
         logging.warn(f"-<<->>-{e}")
 
