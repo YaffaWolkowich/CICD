@@ -1,16 +1,16 @@
 import azure.functions as func
 import logging
-# import requests
+import requests
 import json
 
-# from config.config_variables import (
-#     documentation_table,
-#     excel_connection_string,
-#     main_manager,
-#     http_trigger_url,
-# )
-# from project.managed_deleted_storages import deleted_storages
-# from project.write_to_excel import write_and_upload
+from config.config_variables import (
+    documentation_table,
+    excel_connection_string,
+    main_manager,
+    http_trigger_url,
+)
+from project.managed_deleted_storages import deleted_storages
+from project.write_to_excel import write_and_upload
 
 
 app = func.FunctionApp()
