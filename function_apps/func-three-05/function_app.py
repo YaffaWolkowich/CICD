@@ -12,8 +12,8 @@ import json
 # from project.managed_deleted_storages import deleted_storages
 # from project.write_to_excel import write_and_upload
 import os
-# import sys
-# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 
 app = func.FunctionApp()
