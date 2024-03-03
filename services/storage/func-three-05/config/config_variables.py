@@ -10,7 +10,7 @@ keyvault_uri = os.getenv("KEYVAULT_URI")
 secret_name = os.getenv("SECRET")
 excel_secret_name = os.getenv("SECRET_EXCEL")
 credential = DefaultAzureCredential()
-# client = SecretClient(vault_url=keyvault_uri, credential=credential)
+client = SecretClient(vault_url=keyvault_uri, credential=credential)
 # secret = client.get_secret(secret_name)
 # connection_string = secret.value
 # excel_secret = client.get_secret(excel_secret_name)
