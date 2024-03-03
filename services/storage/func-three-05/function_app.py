@@ -29,13 +29,12 @@ def func_send_excel_mark_delete(req: func.HttpRequest) -> func.HttpResponse:
         body = req.get_body()
         my_json = body.decode("utf8").replace("'", '"')
         data = json.loads(my_json)
-        logging.info(f"data: {data}")
-        logging.warn(config.config_variables.main_manager)
+
         alerts_to_excel = data["alerts_to_excel"]
         partition_key = data["partition_key"]
         all_storages = data["all_storages"]
         write_and_upload(excel_connection_string, alerts_to_excel)
-        logging.warn("  write_and_upload")
+
         requests.post(
             http_trigger_url,
             json={
@@ -46,7 +45,6 @@ def func_send_excel_mark_delete(req: func.HttpRequest) -> func.HttpResponse:
             },
         )
 
-        logging.info("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
         deleted_storages(documentation_table, int(partition_key) - 1, all_storages)
 
     except Exception as e:
