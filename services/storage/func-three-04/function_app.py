@@ -25,49 +25,45 @@ def func_test_storage(req: func.HttpRequest) -> func.HttpResponse:
     row_key = data["row_key"]
     last_fetch_time = data["last_fetch_time"]
     response_for_null_storages = {"storage_account": "null"}
-    try:
-        storage_account_test()
-    except Exception as e:
-        logging.info("_________________________________")
-        logging.info(e)
+
         
-    # try:
-    #     if storage_account["tag"] == "True":
-    #         paginated_response = {
-    #             "value": [response_for_null_storages],
-    #             "nextLink": None,
-    #         }
-    #         return func.HttpResponse(
-    #             json.dumps(paginated_response), mimetype="application/json"
-    #         )
-    #     if storage_account["name"] == documentation_storage_name:
-    #         paginated_response = {
-    #             "value": [response_for_null_storages],
-    #             "nextLink": None,
-    #         }
-    #         return func.HttpResponse(
-    #             json.dumps(paginated_response), mimetype="application/json"
-    #         )
-    #     object_for_alerts_to_excel = storage_account_test(
-    #         storage_account["name"],
-    #         partition_key,
-    #         row_key,
-    #         subscription_id,
-    #         subscription_name,
-    #         storage_account["id"],
-    #         last_fetch_time,
-    #     )
-    # except Exception:
-    #     response_for_null_storages = {
-    #         "storage_account": storage_account["name"],
-    #         "alert_body": "null",
-    #     }
-    #     paginated_response = {"value": [response_for_null_storages], "nextLink": None}
-    #     return func.HttpResponse(
-    #         json.dumps(paginated_response), mimetype="application/json"
-    #     )
-    # paginated_response = {"value": [object_for_alerts_to_excel], "nextLink": None}
-    # return func.HttpResponse(
-    #     json.dumps(paginated_response), mimetype="application/json"
-    # )
-    return func.HttpResponse("success ", status_code=200)
+    try:
+        if storage_account["tag"] == "True":
+            paginated_response = {
+                "value": [response_for_null_storages],
+                "nextLink": None,
+            }
+            return func.HttpResponse(
+                json.dumps(paginated_response), mimetype="application/json"
+            )
+        if storage_account["name"] == documentation_storage_name:
+            paginated_response = {
+                "value": [response_for_null_storages],
+                "nextLink": None,
+            }
+            return func.HttpResponse(
+                json.dumps(paginated_response), mimetype="application/json"
+            )
+        object_for_alerts_to_excel = storage_account_test(
+            storage_account["name"],
+            partition_key,
+            row_key,
+            subscription_id,
+            subscription_name,
+            storage_account["id"],
+            last_fetch_time,
+        )
+    except Exception:
+        response_for_null_storages = {
+            "storage_account": storage_account["name"],
+            "alert_body": "null",
+        }
+        paginated_response = {"value": [response_for_null_storages], "nextLink": None}
+        return func.HttpResponse(
+            json.dumps(paginated_response), mimetype="application/json"
+        )
+    paginated_response = {"value": [object_for_alerts_to_excel], "nextLink": None}
+    return func.HttpResponse(
+        json.dumps(paginated_response), mimetype="application/json"
+    )
+    # return func.HttpResponse("success ", status_code=200)
