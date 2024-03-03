@@ -35,7 +35,7 @@ def func_send_excel_mark_delete(req: func.HttpRequest) -> func.HttpResponse:
         partition_key = data["partition_key"]
         all_storages = data["all_storages"]
         write_and_upload(excel_connection_string, alerts_to_excel)
-        logging.warn("+++++++++++++++++++++++++++++   write_and_upload")
+        logging.warn("  write_and_upload")
         # requests.post(
         #     http_trigger_url,
         #     json={
