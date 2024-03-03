@@ -19,6 +19,7 @@ jobs:
     strategy:
       matrix:
         directory:
+          - func-three-04
           - func-three-05
 
 
