@@ -12,7 +12,7 @@ from config.config_variables import documentation_table
 # )
 
 from project.last_fetch_time import check_last_fetch_is_early
-from project.send_alert_email import main_alerts
+# from project.send_alert_email import main_alerts
 # from project.used_capacity_comparison import used_capacity_comparison_test
 
 
