@@ -1,6 +1,6 @@
 import azure.functions as func
 import logging
-# import requests
+import requests
 import json
 
 # import os
