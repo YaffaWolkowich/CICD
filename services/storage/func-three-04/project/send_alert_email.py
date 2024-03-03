@@ -3,7 +3,7 @@ import requests
 
 from project.connect_to_azure import upload_to_table, retrieve_data_from_table
 from config.config_variables import (
-    excel_connection_string as con_str,
+    manager_connection_string as con_str,
     managers_table,
     alerts_documentation,
     http_trigger_url,

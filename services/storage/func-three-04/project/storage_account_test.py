@@ -13,7 +13,7 @@ from project.connect_to_azure import (
     create_storage_management_client,
 )
 
-# from project.send_alert_email import main_alerts
+from project.send_alert_email import main_alerts
 
 
 def storage_account_test(
