@@ -4,8 +4,8 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-# from config.config_variables import documentation_storage_name
-# from project.storage_account_test import storage_account_test
+from config.config_variables import documentation_storage_name
+from project.storage_account_test import storage_account_test
 
 app = func.FunctionApp()
 
