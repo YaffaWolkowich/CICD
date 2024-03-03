@@ -2,13 +2,7 @@ from azure.core.exceptions import ResourceNotFoundError
 from azure.data.tables import TableClient
 import json
 import pandas as pd
-import logging
 
-
-
-def deleted_storages(documentation_table, partition_key , all_storages):
-    logging.info("------------------------")
-    logging.warn(documentation_table, partition_key , all_storages)
 # from config.config_variables import connection_string, deleted_accounts_table
 
 

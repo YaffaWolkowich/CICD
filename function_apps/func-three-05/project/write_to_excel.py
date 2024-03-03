@@ -1,11 +1,7 @@
 from azure.storage.blob import BlobServiceClient
 import pandas as pd
 import os
-import logging
 
-def write_and_upload(connection_string,data):
-    logging.info("++++++++++++++++++++")
-    logging.warn(connection_string,data)
 # def write_and_upload(connection_string, data):
 #     blob_file = "alert_file.xlsx"
 #     container = "excel"
