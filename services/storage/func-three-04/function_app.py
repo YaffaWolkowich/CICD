@@ -1,7 +1,7 @@
 import azure.functions as func
 import json
 
-from config.config_variables import documentation_storage_name
+# from config.config_variables import documentation_storage_name
 from project.storage_account_test import storage_account_test
 
 app = func.FunctionApp()
