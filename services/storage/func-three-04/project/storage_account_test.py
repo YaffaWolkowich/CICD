@@ -11,11 +11,9 @@ import logging
 #     create_storage_management_client,
 # )
 
-#-----
 # from project.last_fetch_time import check_last_fetch_is_early
 # from project.send_alert_email import main_alerts
-# from project.used_capacity_comparison import used_capacity_comparison_test
-#----
+from project.used_capacity_comparison import used_capacity_comparison_test
 
 
 def storage_account_test(
