@@ -2,6 +2,9 @@ from datetime import datetime
 import logging
 # -----
 from config.config_variables import documentation_table
+from project.last_fetch_time import check_last_fetch_is_early
+
+from project.used_capacity_comparison import used_capacity_comparison_test
 #--------
 
 # from project.alert_reason_enum import alert_reasons
@@ -11,9 +14,7 @@ from config.config_variables import documentation_table
 #     create_storage_management_client,
 # )
 
-from project.last_fetch_time import check_last_fetch_is_early
 # from project.send_alert_email import main_alerts
-# from project.used_capacity_comparison import used_capacity_comparison_test
 
 
 def storage_account_test(
