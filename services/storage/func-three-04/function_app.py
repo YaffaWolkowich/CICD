@@ -2,6 +2,8 @@ import azure.functions as func
 import json
 import os
 import sys
+import logging
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from config.config_variables import documentation_storage_name
@@ -23,6 +25,12 @@ def func_test_storage(req: func.HttpRequest) -> func.HttpResponse:
     row_key = data["row_key"]
     last_fetch_time = data["last_fetch_time"]
     response_for_null_storages = {"storage_account": "null"}
+    try:
+        storage_account_test()
+    except Exception as e:
+        logging.info("_________________________________")
+        logging.info(e)
+        
     # try:
     #     if storage_account["tag"] == "True":
     #         paginated_response = {
