@@ -26,7 +26,7 @@ def func_test_storage(req: func.HttpRequest) -> func.HttpResponse:
     last_fetch_time = data["last_fetch_time"]
     response_for_null_storages = {"storage_account": "null"}
 
-        
+
     try:
         if storage_account["tag"] == "True":
             paginated_response = {
@@ -66,4 +66,3 @@ def func_test_storage(req: func.HttpRequest) -> func.HttpResponse:
     return func.HttpResponse(
         json.dumps(paginated_response), mimetype="application/json"
     )
-    # return func.HttpResponse("success ", status_code=200)
