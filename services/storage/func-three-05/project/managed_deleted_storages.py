@@ -3,7 +3,7 @@ from azure.data.tables import TableClient
 import json
 import pandas as pd
 
-from config.config_variables import connection_string, deleted_accounts_table
+# from config.config_variables import connection_string, deleted_accounts_table
 
 
 def deleted_storages(table_name, test_number, all_storages):
