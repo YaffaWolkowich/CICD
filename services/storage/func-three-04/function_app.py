@@ -5,7 +5,7 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from config.config_variables import documentation_storage_name
-# from project.storage_account_test import storage_account_test
+from project.storage_account_test import storage_account_test
 
 app = func.FunctionApp()
 
@@ -16,13 +16,13 @@ def func_test_storage(req: func.HttpRequest) -> func.HttpResponse:
     body = req.get_body()
     my_json = body.decode("utf8").replace("'", '"')
     data = json.loads(my_json)
-    # subscription_id = data["subscription_id"]
-    # subscription_name = data["subscription_name"]
-    # storage_account = data["storage_account"]
-    # partition_key = data["partition_key"]
-    # row_key = data["row_key"]
-    # last_fetch_time = data["last_fetch_time"]
-    # response_for_null_storages = {"storage_account": "null"}
+    subscription_id = data["subscription_id"]
+    subscription_name = data["subscription_name"]
+    storage_account = data["storage_account"]
+    partition_key = data["partition_key"]
+    row_key = data["row_key"]
+    last_fetch_time = data["last_fetch_time"]
+    response_for_null_storages = {"storage_account": "null"}
     # try:
     #     if storage_account["tag"] == "True":
     #         paginated_response = {
