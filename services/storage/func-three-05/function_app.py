@@ -30,7 +30,7 @@ def func_send_excel_mark_delete(req: func.HttpRequest) -> func.HttpResponse:
         my_json = body.decode("utf8").replace("'", '"')
         data = json.loads(my_json)
         logging.info(f"data: {data}")
-
+        logging.warn(config.config_variables.main_manager)
         # alerts_to_excel = data["alerts_to_excel"]
         # partition_key = data["partition_key"]
         # all_storages = data["all_storages"]
