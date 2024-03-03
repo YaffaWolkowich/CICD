@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 
 # from project.managed_deleted_storages import deleted_storages
-# from project.write_to_excel import write_and_upload
+from project.write_to_excel import write_and_upload
 
 
 app = func.FunctionApp()
