@@ -6,7 +6,7 @@ import json
 import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
+import config.config_variables
 # from config.config_variables import (
 #     documentation_table,
 #     excel_connection_string,
@@ -15,8 +15,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 # )
 
 
-from project.managed_deleted_storages import deleted_storages
-from project.write_to_excel import write_and_upload
+# from project.managed_deleted_storages import deleted_storages
+# from project.write_to_excel import write_and_upload
 
 
 app = func.FunctionApp()
@@ -30,9 +30,10 @@ def func_send_excel_mark_delete(req: func.HttpRequest) -> func.HttpResponse:
         my_json = body.decode("utf8").replace("'", '"')
         data = json.loads(my_json)
         logging.info(f"data: {data}")
-        alerts_to_excel = data["alerts_to_excel"]
-        partition_key = data["partition_key"]
-        all_storages = data["all_storages"]
+        logging.warn(config.config_variables.documentation_table)
+        # alerts_to_excel = data["alerts_to_excel"]
+        # partition_key = data["partition_key"]
+        # all_storages = data["all_storages"]
         # write_and_upload(excel_connection_string, alerts_to_excel)
         # requests.post(
         #     http_trigger_url,
