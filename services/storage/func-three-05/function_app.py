@@ -36,18 +36,18 @@ def func_send_excel_mark_delete(req: func.HttpRequest) -> func.HttpResponse:
         all_storages = data["all_storages"]
         write_and_upload(excel_connection_string, alerts_to_excel)
         logging.warn("  write_and_upload")
-        # requests.post(
-        #     http_trigger_url,
-        #     json={
-        #         "recipient_email": main_manager,
-        #         "subject": "Summary Alerts For Storage Accounts",
-        #         "body": "summary file",
-        #         "excel": "alert_file.xlsx",
-        #     },
-        # )
+        requests.post(
+            http_trigger_url,
+            json={
+                "recipient_email": main_manager,
+                "subject": "Summary Alerts For Storage Accounts",
+                "body": "summary file",
+                "excel": "alert_file.xlsx",
+            },
+        )
 
-        # logging.info("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
-        # deleted_storages(documentation_table, int(partition_key) - 1, all_storages)
+        logging.info("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+        deleted_storages(documentation_table, int(partition_key) - 1, all_storages)
 
     except Exception as e:
         logging.warn(f"-<<->>-{e}")
