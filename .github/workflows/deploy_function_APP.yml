@@ -20,7 +20,7 @@ jobs:
       matrix:
         directory:
           - func-three-05
-          - func-user-disable-wow
+          # - func-user-disable-wow
 
 
     steps:
