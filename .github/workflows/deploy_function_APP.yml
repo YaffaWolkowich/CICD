@@ -19,8 +19,8 @@ jobs:
     strategy:
       matrix:
         directory:
-          - func-three-05
-          # - func-user-disable-wow
+          # - func-three-05
+          - func-user-disable-wow
 
 
     steps:
