@@ -21,7 +21,7 @@ jobs:
         directory:
           # - func-three-05
           # - func-user-disable-wow
-          - func-get-storage-list-by-subscription
+          - func-three-03
 
 
     steps:
