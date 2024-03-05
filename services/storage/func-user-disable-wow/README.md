@@ -1,7 +1,7 @@
-# Get storage list by subscription function
+# User Disable Automation function
 
 This folder contains code that will be deployed to function-app in Azure.
-The function receives the name of the subscription and returns all the storage in it.
+The function contains an automatic process for disabling access of external users after a specified period of time from their creation.
 
 ## Dependencies
 
@@ -9,11 +9,12 @@ The following dependencies are required to run the code end deploy to function-a
 
 - azure-functions
 - azure-identity
-- azure-mgmt-storage
-- black
+- azure-keyvault-secrets
 - pytest
-- pytest-cov
-- python-dotenv
+- python-dotenv==1.0.0
+- pytz
+- requests
+- ruff
 
 These dependencies exist in the 'requirements.txt' file.
 

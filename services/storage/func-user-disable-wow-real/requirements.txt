@@ -1,9 +1,0 @@
-
-azure-functions
-python-dotenv==1.0.0
-pytest
-black
-azure-keyvault-secrets
-azure-identity
-requests
-pytz
