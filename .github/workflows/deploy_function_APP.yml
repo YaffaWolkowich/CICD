@@ -100,15 +100,15 @@ jobs:
           type=semver,pattern={{major}},value=${{ env.TAG }}
       if: env.DIRECTORY == matrix.directory
  
-    - name: 🏗️ Build and push container image to registry
-      uses: docker/build-push-action@v3
-      with:
-        context: ./services/storage/${{ matrix.directory }}
-        push: true
-        tags: ghcr.io/${{ env.REPO }}-${{ matrix.directory }}:${{ steps.get_release.outputs.tag_name }}
-        labels: ${{ steps.docker_meta.outputs.labels }}
-        file: ./services/Dockerfile
-      if: env.DIRECTORY == matrix.directory
+    # - name: 🏗️ Build and push container image to registry
+    #   uses: docker/build-push-action@v3
+    #   with:
+    #     context: ./services/storage/${{ matrix.directory }}
+    #     push: true
+    #     tags: ghcr.io/${{ env.REPO }}-${{ matrix.directory }}:${{ steps.get_release.outputs.tag_name }}
+    #     labels: ${{ steps.docker_meta.outputs.labels }}
+    #     file: ./services/Dockerfile
+    #   if: env.DIRECTORY == matrix.directory
 
     - name: 🔑 Login to Azure
       uses: azure/login@v1
@@ -120,6 +120,6 @@ jobs:
       id: deploy-to-functions
       uses: Azure/functions-container-action@v1
       with:
-        app-name: ${{ matrix.directory }}
-        image: 'ghcr.io/${{ env.REPO }}-${{ matrix.directory }}:${{ steps.get_release.outputs.tag_name }}'
+        app-name: 'func-three-03'
+        image: 'ghcr.io/yaffawolkowich/cicd-func-wow-first:v1.0.0'
       if: env.DIRECTORY == matrix.directory
