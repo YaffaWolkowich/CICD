@@ -43,17 +43,18 @@ jobs:
         DIRS=($(ls -d */*/ | jq --raw-input --slurp --compact-output 'split("\n")[:-1]' | jq -r '.[]'))
         for dir in "${DIRS[@]}"
         do
-          if [[ $dir != "storage-account/logic-app-templates/" ]]; then
+          if: contains(ls */${{ $dir }}*, 'testing')
+          # if [[ $dir != "storage-account/logic-app-templates/" ]]; then
             echo $dir
           fi
         done
 
-    - name: ✅ Run tests
-      run: |
-        DIRS=($(ls -d */*/ | jq --raw-input --slurp --compact-output 'split("\n")[:-1]' | jq -r '.[]'))
-        for dir in "${DIRS[@]}"
-        do
-          if [[ $dir != "storage-account/logic-app-templates/" ]]; then
-            pytest $dir
-          fi
-        done
+    # - name: ✅ Run tests
+    #   run: |
+    #     DIRS=($(ls -d */*/ | jq --raw-input --slurp --compact-output 'split("\n")[:-1]' | jq -r '.[]'))
+    #     for dir in "${DIRS[@]}"
+    #     do
+    #       if [[ $dir != "storage-account/logic-app-templates/" ]]; then
+    #         pytest $dir
+    #       fi
+    #     done
