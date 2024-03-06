@@ -40,18 +40,20 @@ jobs:
 
     - name: print
       run: |
-        DIRS=($(ls -d */*/ | jq --raw-input --slurp --compact-output 'split("\n")[:-1]' | jq -r '.[]'))   
+        DIRS=($(ls -d */*/ | jq --raw-input --slurp --compact-output 'split("\n")[:-1]' | jq -r '.[]'))
         for dir in "${DIRS[@]}"
         do
-          if: '$dir != "logic-app-templates"'
-          echo $dir
+          if [[ $dir != "logic-app-templates" ]]; then
+            echo $dir
+          fi
         done
 
     - name: ✅ Run tests
       run: |
-        DIRS=($(ls -d */*/ | jq --raw-input --slurp --compact-output 'split("\n")[:-1]' | jq -r '.[]'))   
+        DIRS=($(ls -d */*/ | jq --raw-input --slurp --compact-output 'split("\n")[:-1]' | jq -r '.[]'))
         for dir in "${DIRS[@]}"
         do
-          if: '$dir != "logic-app-templates"'
-          pytest $dir
+          if [[ $dir != "logic-app-templates" ]]; then
+            pytest $dir
+          fi
         done
