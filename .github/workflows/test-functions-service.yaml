@@ -53,7 +53,5 @@ jobs:
         DIRS=($(ls -d */*/ | jq --raw-input --slurp --compact-output 'split("\n")[:-1]' | jq -r '.[]'))
         for dir in "${DIRS[@]}"
         do
-          if [[ -d "$dir/testing" ]]; then
             pytest $dir
-          fi
         done
