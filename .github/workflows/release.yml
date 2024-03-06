@@ -1,0 +1,41 @@
+name: 🐍 Create Python Release  
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'New tag name'
+        required: true
+
+jobs:
+  build:
+    name: Upload Python Release Asset
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: 📂 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔵 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'  
+          
+      - name: ⏬ Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  
+
+      - name: 📁 Create ZIP Archive
+        run: |
+          zip -r repository.zip .
+
+      - name: 🔖 Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: ./repository.zip
+    
