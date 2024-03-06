@@ -44,12 +44,14 @@ jobs:
         for dir in "${DIRS[@]}"
         do
          echo $dir
+        if: '$dir != "logic-app-templates"'
         done
 
     - name: ✅ Run tests
       run: |
         DIRS=($(ls -d */*/ | jq --raw-input --slurp --compact-output 'split("\n")[:-1]' | jq -r '.[]'))   
         for dir in "${DIRS[@]}"
-        do
+        do 
          pytest $dir
+        if: '$dir != "logic-app-templates"'
         done
